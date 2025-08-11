@@ -1,353 +1,349 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding Invitation</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', 'Helvetica', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wedding Invitation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fdf6f0;
+      color: #333;
+    }
 
-        .section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-            box-sizing: border-box;
-        }
+  /* Hero Section */
+.hero-section.slideshow {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 300px;
+  margin: 40px auto;
+  overflow: hidden;
+  border-bottom: 10px solid #007BFF;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
-        .hero {
-            background: linear-gradient(135deg, #ff6f61, #ffb88c);
-            color: #fff;
-        }
+.hero-section .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
 
-        .hero-image {
-            width: 100%;
-            max-width: 600px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
+.hero-section .slide.active {
+  opacity: 1;
+}
 
-        @keyframes float {
-            0% { transform: translateY(0); -webkit-transform: translateY(0); }
-            50% { transform: translateY(-10px); -webkit-transform: translateY(-10px); }
-            100% { transform: translateY(0); -webkit-transform: translateY(0); }
-        }
 
-        h1, h2, h3 {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            color: inherit;
-        }
 
-        h1 {
-            font-size: 3.5rem;
-            margin: 0;
-        }
+    .hero-overlay {
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+      color: white;
+      padding: 60px;
+      border-radius: 16px;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-        h2.section-title {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            position: relative;
-        }
+    .hero-overlay h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
 
-        h2.section-title::after {
-            content: '';
-            width: 50px;
-            height: 3px;
-            background: #ff6f61;
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    .hero-overlay p {
+      font-size: 1.8em;
+      font-weight: 300;
+    }
 
-        .agenda-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            width: 100%;
-        }
+    .hero-overlay button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
 
-        .agenda-item {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .agenda-item:hover {
-            transform: scale(1.05);
-        }
+    /* Section Cards */
+    .section-card {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 40px 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
 
-        .roadmap-container {
-            position: relative;
-            max-width: 800px;
-            width: 100%;
-            padding: 20px;
-        }
+    .section-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        .roadmap-line {
-            position: absolute;
-            width: 4px;
-            background: #ff6f61;
-            height: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    h1, h2 {
+      margin-bottom: 20px;
+    }
 
-        .roadmap-points {
-            position: relative;
-            z-index: 1;
-        }
+    /* Slideshow */
+    .slideshow {
+      display: flex;
+      overflow: hidden;
+      height: 300px;
+      position: relative;
+    }
 
-        .roadmap-point {
-            display: flex;
-            align-items: center;
-            margin: 20px 0;
-            padding: 10px;
-            background: white;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    .slideshow img {
+      width: 100%;
+      object-fit: cover;
+      animation: slide 25s infinite;
+    }
 
-        .roadmap-point span {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: #ff6f61;
-            color: white;
-            border-radius: 50%;
-            line-height: 40px;
-            text-align: center;
-            margin-right: 10px;
-        }
+    @keyframes slide {
+      0% {transform: translateX(0);}
+      20% {transform: translateX(-100%);}
+      40% {transform: translateX(-200%);}
+      60% {transform: translateX(-300%);}
+      80% {transform: translateX(-400%);}
+      100% {transform: translateX(0);}
+    }
 
-        .thank-you-image {
-            width: 100%;
-            max-width: 600px;
-            border-radius: 10px;
-            margin-top: 20px;
-            animation: fadeIn 2s ease-in;
-        }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      margin-top: 20px;
+    }
 
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 2s ease-in forwards;
-        }
+    .agenda {
+      text-align: left;
+      max-width: 600px;
+      margin: auto;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .agenda li {
+      margin-bottom: 10px;
+    }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            h2.section-title { font-size: 2rem; }
-            h3 { font-size: 1.4rem; }
-            .hero-image, .thank-you-image { max-width: 90%; }
-            .agenda-container { grid-template-columns: 1fr; }
-            .roadmap-line { display: none; }
-            .roadmap-point { justify-content: center; font-size: 0.9rem; }
-        }
+    .agenda strong {
+      color: #007BFF;
+    }
 
-        @media (max-width: 480px) {
-            h1 { font-size: 2rem; }
-            h2.section-title { font-size: 1.7rem; }
-            h3 { font-size: 1.2rem; }
-            .agenda-item { padding: 15px; }
-            .roadmap-point { margin: 10px 0; }
-        }
-    </style>
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Countdown */
+   .countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.countdown-item {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #007BFF;
+  position: relative;
+}
+
+.countdown-item span {
+  display: block;
+  animation: drop 0.5s ease;
+}
+
+.countdown-item label {
+  display: block;
+  font-size: 0.6em;
+  margin-top: 5px;
+  color: #555;
+}
+
+@keyframes drop {
+  0% { transform: translateY(-30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+  </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section id="hero" class="section hero">
-        <div class="hero-content">
-            <img src="images/bride-groom.jpg" alt="Bride and Groom" class="hero-image">
-            <h1 class="fade-in">សិរីសួស្ដី អាពាហ៍ពិពាហ៍</h1>
-            <p class="fade-in">ដែលប្រារព្ធនៅថ្ងៃទី ៣១ ខែ មិនច្បាស់ ឆ្នាំ ២០២៦</p>
-        </div>
-    </section>
 
-    <!-- Agenda Section -->
-    <section id="agenda" class="section">
-        <h2 class="section-title">កម្មវីធី</h2>
-        <div class="agenda-container">
-            <div class="agenda-item fade-in">
-                <h3>​១៦ មករា ២០២៥ ម៉ោង ០៥:០០ ល្ងាច - ថ្ងៃចូលរោងជ័យ</h3>
-                <p>និមន្ដព្រះសង្ឃចំរើនព្រះបរិត្ត</p>
-            </div>
-            <div class="agenda-item fade-in">
-                 <h3>​១7 មករា ២០២៥ ម៉ោង ០7:០០ ព្រឹក - ហែរចំនួន</h3>
-                <p>សូមមេត្តាអញ្ជើញចូលរួមអោយបានច្រើនកុះករ</p>
-            </div>
-            <div class="agenda-item fade-in">
-                <h3>2:00 PM - Photo Session</h3>
-                <p>Capturing memories in the Rose Garden</p>
-            </div>
-            <div class="agenda-item fade-in">
-                <h3>4:00 PM - Dance & Party</h3>
-                <p>Celebrate with music and dancing</p>
-            </div>
-        </div>
-    </section>
+  <!-- Background Music -->
+  <audio autoplay loop controls style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <source src="wedding-music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-    <!-- Roadmap Section -->
-    <section id="roadmap" class="section">
-        <h2 class="section-title">Our Wedding Journey</h2>
-        <div class="roadmap-container">
-            <div class="roadmap-line"></div>
-            <div class="roadmap-points">
-                <div class="roadmap-point fade-in"><span>01</span> We met at a coffee shop</div>
-                <div class="roadmap-point fade-in"><span>02</span> First date under the stars</div>
-                <div class="roadmap-point fade-in"><span>03</span> First trip together</div>
-                <div class="roadmap-point fade-in"><span>04</span> Moved in together</div>
-                <div class="roadmap-point fade-in"><span>05</span> Adopted our pet</div>
-                <div class="roadmap-point fade-in"><span>06</span> First holiday together</div>
-                <div class="roadmap-point fade-in"><span>07</span> Proposal night</div>
-                <div class="roadmap-point fade-in"><span>08</span> Engagement party</div>
-                <div class="roadmap-point fade-in"><span>09</span> Wedding planning begins</div>
-                <div class="roadmap-point fade-in"><span>10</span> Venue selection</div>
-                <div class="roadmap-point fade-in"><span>11</span> Dress shopping</div>
-                <div class="roadmap-point fade-in"><span>12</span> Suit fitting</div>
-                <div class="roadmap-point fade-in"><span>13</span> Invitations sent</div>
-                <div class="roadmap-point fade-in"><span>14</span> Cake tasting</div>
-                <div class="roadmap-point fade-in"><span>15</span> Music selection</div>
-                <div class="roadmap-point fade-in"><span>16</span> Rehearsal dinner</div>
-                <div class="roadmap-point fade-in"><span>17</span> Final fittings</div>
-                <div class="roadmap-point fade-in"><span>18</span> Decor setup</div>
-                <div class="roadmap-point fade-in"><span>19</span> Vow writing</div>
-                <div class="roadmap-point fade-in"><span>20</span> Wedding day!</div>
-            </div>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <div class="hero-section slideshow">
+  <div class="slide active" style="background-image: url('top01.jpg');"></div>
+  <div class="slide" style="background-image: url('top02.jpg');"></div>
+  <div class="slide" style="background-image: url('top03.jpg');"></div>
+</div>
 
-    <!-- Thank You Section -->
-    <section id="thank-you" class="section">
-        <h2 class="section-title">Thank You</h2>
-        <p class="fade-in">We are grateful for your love and support.</p>
-        <img src="images/thank-you.jpg" alt="Thank You" class="thank-you-image">
-    </section>
+  <!-- Countdown Section -->
+  <div class="section-card" id="countdown-card">
+  <h2>Countdown to Our Wedding</h2>
+  <div class="countdown-container">
+    <div class="countdown-item"><span id="days">0</span><label>Days</label></div>
+    <div class="countdown-item"><span id="hours">0</span><label>Hours</label></div>
+    <div class="countdown-item"><span id="minutes">0</span><label>Minutes</label></div>
+    <div class="countdown-item"><span id="seconds">0</span><label>Seconds</label></div>
+  </div>
+</div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-                gsap.registerPlugin(ScrollTrigger);
+  <!-- Section 01: Slideshow -->
+  <div class="section-card">
+    <h2>Groom & Bride</h2>
+    <div class="slideshow">
+      <img src="image1.jpg" alt="Slide 1" />
+      <img src="image2.jpg" alt="Slide 2" />
+      <img src="image3.jpg" alt="Slide 3" />
+      <img src="image4.jpg" alt="Slide 4" />
+      <img src="image5.jpg" alt="Slide 5" />
+    </div>
+  </div>
 
-                // Hero section animations
-                gsap.from(".hero-content h1", {
-                    duration: 1,
-                    y: 50,
-                    opacity: 0,
-                    ease: "power2.out",
-                    delay: 0.5
-                });
+  <!-- Section 02: Invitation Details -->
+  <div class="section-card" id="invitation">
+    <h2>You're Invited</h2>
+    <p>Dear Sir/Madam,<br>
+    We would like to invite you to join us in celebrating our wedding. Your presence would mean the world to us.</p>
+    <iframe src="https://www.google.com/maps?q=11.461639,104.9715&hl=en&z=14&output=embed"></iframe>
+  </div>
 
-                gsap.from(".hero-content p", {
-                    duration: 1,
-                    y: 50,
-                    opacity: 0,
-                    ease: "power2.out",
-                    delay: 0.7
-                });
+  <!-- Section 03: Agenda -->
+  <div class="section-card">
+    <h2>Event Agenda</h2>
+    <ul class="agenda">
+      <li><strong>01. Guest Arrival & Registration</strong> – Welcoming guests with refreshments</li>
+      <li><strong>02. Opening Remarks</strong> – A warm welcome from the host</li>
+      <li><strong>03. Bride & Groom Entrance</strong> – Grand entrance of the couple</li>
+      <li><strong>04. Blessing Ceremony</strong> – Traditional blessings and prayers</li>
+      <li><strong>05. Exchange of Vows</strong> – Heartfelt promises between bride and groom</li>
+      <li><strong>06. Ring Exchange</strong> – Symbolic gesture of eternal love</li>
+      <li><strong>07. Signing of Marriage Certificate</strong> – Official union witnessed by family</li>
+      <li><strong>08. Toast & Speeches</strong> – Words from loved ones and the couple</li>
+      <li><strong>09. Dinner Reception</strong> – Enjoy a curated wedding feast</li>
+      <li><strong>10. Cake Cutting Ceremony</strong> – Sweet moment shared by the couple</li>
+      <li><strong>11. First Dance</strong> – Romantic dance to celebrate love</li>
+      <li><strong>12. Entertainment & Performances</strong> – Live music and cultural showcases</li>
+      <li><strong>13. Photo Session</strong> – Capture memories with guests</li>
+      <li><strong>14. Gift Presentation</strong> – Exchange of tokens and blessings</li>
+      <li><strong>15. Farewell & Closing</strong> – Thanking guests and concluding the celebration</li>
+    </ul>
+  </div>
 
-                // Agenda items animation
-                gsap.utils.toArray(".agenda-item").forEach(item => {
-                    gsap.from(item, {
-                        scrollTrigger: {
-                            trigger: item,
-                            start: "top 80%",
-                        },
-                        duration: 1,
-                        y: 50,
-                        opacity: 0,
-                        ease: "power2.out"
-                    });
-                });
+  <!-- Section 04: Thank You -->
+  <div class="section-card">
+    <h2>Thank You</h2>
+    <p>Thank you for visiting our wedding invitation page. We look forward to celebrating with you!</p>
+  </div>
 
-                // Roadmap points animation
-                gsap.utils.toArray(".roadmap-point").forEach(point => {
-                    gsap.from(point, {
-                        scrollTrigger: {
-                            trigger: point,
-                            start: "top 80%",
-                        },
-                        duration: 1,
-                        x: -50,
-                        opacity: 0,
-                        ease: "power2.out"
-                    });
-                });
+  <!-- Section 05: Gallery -->
+  <div class="section-card">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="gallery1.jpg" alt="Gallery 1" />
+      <img src="gallery2.jpg" alt="Gallery 2" />
+      <img src="gallery3.jpg" alt="Gallery 3" />
+      <img src="gallery4.jpg" alt="Gallery 4" />
+      <img src="gallery5.jpg" alt="Gallery 5" />
+    </div>
+  </div>
 
-                // Thank you section animation
-                gsap.from(".thank-you-image", {
-                    scrollTrigger: {
-                        trigger: ".thank-you-image",
-                        start: "top 80%",
-                    },
-                    duration: 1,
-                    scale: 0.8,
-                    opacity: 0,
-                    ease: "power2.out"
-                });
-            } else {
-                console.warn("GSAP or ScrollTrigger not loaded; animations disabled.");
-            }
-        });
-    </script>
+  
+  <script>
+  // Scroll animation
+  const cards = document.querySelectorAll('.section-card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  cards.forEach(card => observer.observe(card));
+
+  // Countdown Timer to 17 Jan 2026
+  const weddingDate = new Date("2026-01-17T00:00:00");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("days").textContent = "0";
+      document.getElementById("hours").textContent = "0";
+      document.getElementById("minutes").textContent = "0";
+      document.getElementById("seconds").textContent = "0";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    const updateDigit = (id, value) => {
+      const el = document.getElementById(id);
+      if (el.textContent !== value.toString()) {
+        el.textContent = value;
+        el.style.animation = 'none';
+        el.offsetHeight; // trigger reflow
+        el.style.animation = null;
+      }
+    };
+
+    updateDigit("days", days);
+    updateDigit("hours", hours);
+    updateDigit("minutes", minutes);
+    updateDigit("seconds", seconds);
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+<script>
+  const slides = document.querySelectorAll('.hero-section .slide');
+  let currentSlide = 0;
+
+  function showNextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+
+  setInterval(showNextSlide, 4000); // Change slide every 4 seconds
+</script>
 </body>
 </html>
-
