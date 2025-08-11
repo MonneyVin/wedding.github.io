@@ -154,7 +154,7 @@ width:100%;max-width:420px;background:linear-gradient(180deg,#fff,#fff);border-r
         <div class="info">
           <div>
             <small style="color:var(--muted);font-size:12px">When</small>
-            <strong>Saturday, 15 August 2025 — 4:00 PM</strong>
+            <strong>Saturday, 17 January 2025 — 4:00 PM</strong>
           </div>
         </div>
 
@@ -274,12 +274,13 @@ width:100%;max-width:420px;background:linear-gradient(180deg,#fff,#fff);border-r
     // Personalize placeholders easily (optional: replace text automatically if query params present)
     (function personalize(){
       const params = new URLSearchParams(location.search);
-      const n1 = params.get('a') || 'Sophea';
-      const n2 = params.get('b') || 'Rithy';
+      const n1 = params.get('a') || 'Monney';
+      const n2 = params.get('b') || 'Leakhena';
       document.querySelectorAll('#hero-title, #invite-title, .couple').forEach(el => el.textContent = n1 + ' & ' + n2);
       // if admin wants to prefill date/venue via params, add more here
     })();
 
   </script>
 </body>
+
 </html>
