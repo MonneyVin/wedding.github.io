@@ -48,9 +48,10 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Arial', 'Helvetica', sans-serif;
             background-color: #f9f9f9;
             color: #333;
+            overflow-x: hidden;
         }
 
         .section {
@@ -61,11 +62,12 @@
             align-items: center;
             padding: 20px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .hero {
             background: linear-gradient(135deg, #ff6f61, #ffb88c);
-            color: white;
+            color: #fff;
         }
 
         .hero-image {
@@ -77,13 +79,14 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
+            0% { transform: translateY(0); -webkit-transform: translateY(0); }
+            50% { transform: translateY(-10px); -webkit-transform: translateY(-10px); }
+            100% { transform: translateY(0); -webkit-transform: translateY(0); }
         }
 
         h1, h2, h3 {
-            font-family: 'Georgia', serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: inherit;
         }
 
         h1 {
@@ -182,6 +185,7 @@
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
+            animation: fadeIn 2s ease-in forwards;
         }
 
         @keyframes fadeIn {
@@ -190,9 +194,9 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2.section-title { font-size: 1.8rem; }
-            h3 { font-size: 1.2rem; }
+            h1 { font-size: 2.2rem; }
+            h2.section-title { font-size: 2rem; }
+            h3 { font-size: 1.4rem; }
             .hero-image, .thank-you-image { max-width: 90%; }
             .agenda-container { grid-template-columns: 1fr; }
             .roadmap-line { display: none; }
@@ -200,8 +204,9 @@
         }
 
         @media (max-width: 480px) {
-            h1 { font-size: 1.8rem; }
-            h2.section-title { font-size: 1.5rem; }
+            h1 { font-size: 2rem; }
+            h2.section-title { font-size: 1.7rem; }
+            h3 { font-size: 1.2rem; }
             .agenda-item { padding: 15px; }
             .roadmap-point { margin: 10px 0; }
         }
@@ -279,64 +284,68 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            gsap.registerPlugin(ScrollTrigger);
+            if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+                gsap.registerPlugin(ScrollTrigger);
 
-            // Hero section animations
-            gsap.from(".hero-content h1", {
-                duration: 1,
-                y: 50,
-                opacity: 0,
-                ease: "power2.out",
-                delay: 0.5
-            });
-
-            gsap.from(".hero-content p", {
-                duration: 1,
-                y: 50,
-                opacity: 0,
-                ease: "power2.out",
-                delay: 0.7
-            });
-
-            // Agenda items animation
-            gsap.utils.toArray(".agenda-item").forEach(item => {
-                gsap.from(item, {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top 80%",
-                    },
+                // Hero section animations
+                gsap.from(".hero-content h1", {
                     duration: 1,
                     y: 50,
                     opacity: 0,
-                    ease: "power2.out"
+                    ease: "power2.out",
+                    delay: 0.5
                 });
-            });
 
-            // Roadmap points animation
-            gsap.utils.toArray(".roadmap-point").forEach(point => {
-                gsap.from(point, {
+                gsap.from(".hero-content p", {
+                    duration: 1,
+                    y: 50,
+                    opacity: 0,
+                    ease: "power2.out",
+                    delay: 0.7
+                });
+
+                // Agenda items animation
+                gsap.utils.toArray(".agenda-item").forEach(item => {
+                    gsap.from(item, {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: "top 80%",
+                        },
+                        duration: 1,
+                        y: 50,
+                        opacity: 0,
+                        ease: "power2.out"
+                    });
+                });
+
+                // Roadmap points animation
+                gsap.utils.toArray(".roadmap-point").forEach(point => {
+                    gsap.from(point, {
+                        scrollTrigger: {
+                            trigger: point,
+                            start: "top 80%",
+                        },
+                        duration: 1,
+                        x: -50,
+                        opacity: 0,
+                        ease: "power2.out"
+                    });
+                });
+
+                // Thank you section animation
+                gsap.from(".thank-you-image", {
                     scrollTrigger: {
-                        trigger: point,
+                        trigger: ".thank-you-image",
                         start: "top 80%",
                     },
                     duration: 1,
-                    x: -50,
+                    scale: 0.8,
                     opacity: 0,
                     ease: "power2.out"
                 });
-            });
-
-            // Thank you section animation
-            gsap.from(".thank-you-image", {
-                scrollTrigger: {
-                    trigger: ".thank-you-image",
-                    start: "top 80%",
-                },
-                duration: 1,
-                scale: 0.8,
-                opacity: 0,
-                ease: "power2.out"
-            });
+            } else {
+                console.warn("GSAP or ScrollTrigger not loaded; animations disabled.");
+            }
         });
     </script>
 </body>
