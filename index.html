@@ -7,34 +7,6 @@
   <!-- Khmer-friendly fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&family=Noto+Serif+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    font-family: "Khmer OS Battambang", Arial, sans-serif;
-      margin: 10px;
-      background: #fafafa;
-    }
-
-    /* ✅ All sections closer */
-    /* ✅ Unified section style (agenda style for all) */
-    section {
-  margin: 20px 0;
-  padding: 20px;
-  background: #111;          /* ពណ៌ខ្មៅស្រាលដូច agenda */
-  border-radius: 12px;       /* កោងជ្រុងដូចកាត */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);  /* shadow ស្រាលៗ */
-}
-
-section h2 {
-  text-align: center;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #fff;
-}
-
-section p {
-  text-align: center;
-  line-height: 1.6;
-  color: #ddd;
-}
-
     :root{
       --gold:#d4af37;   
       --dark:#0f1115;   
@@ -45,7 +17,6 @@ section p {
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     body{
-      margin: 0px;
       font-family:"Kantumruy Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--light);
       background:#0d0f14;
@@ -53,41 +24,59 @@ section p {
       overflow-x:hidden;
     }
     a{color:inherit;text-decoration:none}
+
+    /* Background */
     .bg{position:fixed;inset:0;z-index:-2;
       background:url('https://images.unsplash.com/photo-1495462911434-be47104d70fa?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
       filter:grayscale(10%);
     }
     .overlay{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg, rgba(5,7,10,.75), rgba(10,12,16,.85));}
+
     .container{width:min(1100px, 92vw);margin-inline:auto;padding:24px}
 
+    /* Header */
     header{padding:80px 0 40px;text-align:center;}
     .badge{display:inline-block;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.35);color:var(--gold);padding:6px 12px;border-radius:999px;font-size:.9rem;backdrop-filter:blur(6px)}
     .title{font-family:"Noto Serif Khmer", serif;font-weight:700;font-size: clamp(28px, 6vw, 56px);letter-spacing:.5px;margin:14px 0;color:#f7f3e8}
     .subtitle{color:var(--muted);font-size:clamp(14px,2.6vw,18px)}
-
     .cta{margin-top:24px;display:inline-flex;gap:10px;align-items:center;padding:12px 20px;border-radius:999px;border:1px solid rgba(212,175,55,.5);
       background:linear-gradient(180deg, rgba(212,175,55,.25), rgba(212,175,55,.15));
       font-weight:700;letter-spacing:.2px;box-shadow:0 6px 20px rgba(212,175,55,.15);color:#fff}
     .cta:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(212,175,55,.25)}
 
+    /* Sticky mini-nav */
     nav{position:sticky;top:0;z-index:10;background:rgba(15,17,21,.55);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08);}
-    nav .navwrap{display:flex;gap:14px;align-items:center;justify-content:center;padding:10px}
+    nav .navwrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;padding:10px}
     nav a{padding:10px 14px;border-radius:999px;opacity:.9}
     nav a.active, nav a:hover{background:rgba(255,255,255,.08)}
 
-    section{padding:64px 0}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;backdrop-filter:blur(6px)}
+    /* Section look unified like agenda */
+    section{padding:48px 0}
+    .section-box{
+      background:#111;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 6px 18px rgba(0,0,0,.35);
+      padding:24px;
+      backdrop-filter:blur(6px);
+    }
 
-    .couple{display:grid;grid-template-columns:1fr;gap:24px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;backdrop-filter:blur(6px)}
+    .center{text-align:center}
+    .label{color:var(--muted);font-size:.95rem;margin-bottom:4px}
+
+    /* Names */
     .names{font-family:"Noto Serif Khmer", serif;font-size:clamp(22px,4.5vw,34px);text-align:center}
     .names span{color:var(--gold)}
 
+    /* Timeline (agenda look) */
     .timeline{display:grid;gap:14px;margin-top:8px}
     .event{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start;background:rgba(255,255,255,.04);padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.06)}
     .dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px dashed rgba(212,175,55,.6);color:var(--gold);font-weight:700}
     .event h4{margin:0 0 4px;font-size:18px;color:#fff}
     .event p{margin:0;color:var(--muted)}
 
+    /* Map & Gallery */
     .mapwrap{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
     .gallery{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
     .slides{display:flex;transition:transform .6s ease}
@@ -96,17 +85,27 @@ section p {
     .dotbtn{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.8);background:rgba(255,255,255,.2)}
     .dotbtn.active{background:var(--gold);border-color:var(--gold)}
 
+    /* Footer */
     footer{padding:48px 0 64px;text-align:center;color:var(--muted)}
     .thanks{font-family:"Noto Serif Khmer", serif;font-size:clamp(20px,4vw,28px);color:#f0e9d6}
 
-    .grid{display:grid;gap:24px}
+    /* Responsive grids — fixed “middle view” */
+    .grid{display:grid;gap:16px}
     .grid.two{grid-template-columns:1fr;}
-    @media (min-width: 860px){
-      .grid.two{grid-template-columns:1.1fr .9fr}
+    @media (min-width: 720px){
+      .grid.two{grid-template-columns:1fr 1fr}
+    }
+    @media (min-width: 960px){
+      .grid.two{gap:24px}
+    }
+
+    /* Couple layout */
+    .couple{display:grid;grid-template-columns:1fr;gap:24px}
+    @media (min-width: 960px){
       .couple{grid-template-columns:.7fr 1.3fr;align-items:center}
     }
 
-    /* Popup style */
+    /* Popup */
     .popup-overlay{
       position:fixed;inset:0;z-index:100;
       background:rgba(0,0,0,.75);
@@ -131,36 +130,12 @@ section p {
     .popup-box button:hover{background:#b9942d}
 
     /* Countdown */
-    .countdown{
-      text-align:center;
-      margin:0 0 20px;
-      font-family:"Noto Serif Khmer", serif;
-    }
-    .countdown h3{
-      font-size:clamp(18px,4vw,26px);
-      margin-bottom:10px;
-      color:var(--gold);
-    }
-    .countdown .time{
-      display:flex;
-      justify-content:center;
-      gap:14px;
-    }
-    .countdown .box{
-      background:rgba(255,255,255,.08);
-      padding:12px 16px;
-      border-radius:12px;
-      min-width:70px;
-    }
-    .countdown .num{
-      font-size:22px;
-      font-weight:700;
-      color:#fff;
-    }
-    .countdown .label{
-      font-size:14px;
-      color:var(--muted);
-    }
+    .countdown{text-align:center;margin:0 0 8px;font-family:"Noto Serif Khmer", serif;}
+    .countdown h3{font-size:clamp(18px,4vw,26px);margin-bottom:10px;color:var(--gold);}
+    .countdown .time{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .countdown .box{background:rgba(255,255,255,.08);padding:12px 16px;border-radius:12px;min-width:70px}
+    .countdown .num{font-size:22px;font-weight:700;color:#fff}
+    .countdown .label{font-size:14px;color:var(--muted)}
   </style>
 </head>
 <body>
@@ -180,42 +155,30 @@ section p {
   <nav>
     <div class="navwrap container">
       <a href="#home">គេហទំព័រ</a>
-      <a href="#invite">លិខិតអញ្ជើញ</a>
+      <a href="#greeting">សូមគោរពអញ្ជើញ</a>
+      <a href="#countdown">ចាប់ផ្តើមនៅក្នុង</a>
+      <a href="#message">សារអញ្ជើញ</a>
       <a href="#agenda">កាលវិភាគ</a>
       <a href="#map">ទីតាំង</a>
       <a href="#gallery">រូបភាព</a>
     </div>
   </nav>
 
-  <!-- HERO / NAMES -->
+  <!-- HERO -->
   <header id="home" class="container">
     <span class="badge">សូមអញ្ជើញជួបជុំក្នុងពិធីសាមគ្គីភាពស្នេហា</span>
     <h1 class="title">ពិធីមង្គលការ</h1>
     <p class="subtitle">ថ្ងៃអាទិត្យ ទី២៣ ខែមិថុនា ឆ្នាំ២០២៥ · ចាប់ផ្តើមម៉ោង ០៨:០០ ព្រឹក</p>
-    <a class="cta" href="#invite">មើលលិខិតអញ្ជើញ</a>
+    <a class="cta" href="#greeting">មើលលិខិតអញ្ជើញ</a>
   </header>
 
-  <!-- COUPLE & INVITE TEXT -->
-  <section id="agenda">
-    <div class="container couple">
-
-      <!-- COUNTDOWN -->
-      <div class="card">
-        <div class="countdown">
-          <h3>ចាប់ផ្តើមនៅក្នុង</h3>
-          <div class="time" id="countdown">
-            <div class="box"><div class="num" id="days">00</div><div class="label">ថ្ងៃ</div></div>
-            <div class="box"><div class="num" id="hours">00</div><div class="label">ម៉ោង</div></div>
-            <div class="box"><div class="num" id="minutes">00</div><div class="label">នាទី</div></div>
-            <div class="box"><div class="num" id="seconds">00</div><div class="label">វិនាទី</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
+  <!-- ១) សូមគោរពអញ្ជើញ -->
+  <section id="greeting">
+    <div class="container">
+      <div class="section-box">
         <div class="names">សូមគោរពអញ្ជើញ <span id="guestTarget">លោក ខេមរៈ</span> និង <span>ដៃគូរ</span></div>
         <p class="center muted">ជាកិត្តិយសយ៉ាងខ្ពង់ខ្ពស់ សូមអញ្ជើញថ្វាយព្រះរាជពិធី និងរីករាយជាមួយយើង ក្នុងឱកាសរៀបអាពាហ៍ពិពាហ៍។</p>
-        <div class="grid two" style="margin-top:10px">
+        <div class="grid two" style="margin-top:12px">
           <div>
             <div class="label">កាលបរិច្ឆេទ</div>
             <div>អាទិត្យ ២៣ មិថុនា ២០២៥</div>
@@ -234,10 +197,34 @@ section p {
           <a class="cta" href="https://wa.me/85512345678" target="_blank" rel="noreferrer">RSVP WhatsApp</a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="card">
-        <div class="label">សារអញ្ជើញ</div>
-        <p style="margin-top:6px">ដោយមានក្តីសោមនស្សពីពុកម្តាយទាំងពីរ និងជឿជាក់លើស្នេហា យើងសូមអញ្ជើញអ្នកគ្រប់គ្នា មេត្តាមកចូលរួមជាភាគីសាក្សី និងជួយផ្តល់ពរ ក្នុងពិធីមង្គលការ។ ការចូលរួមរបស់លោកអ្នកគឺជាកិត្តិយសដ៏មានតម្លៃសម្រាប់គូស្នេហានេះ។</p>
+  <!-- ២) ចាប់ផ្តើមនៅក្នុង (Countdown) -->
+  <section id="countdown">
+    <div class="container">
+      <div class="section-box">
+        <div class="countdown">
+          <h3>ចាប់ផ្តើមនៅក្នុង</h3>
+          <div class="time" id="countdownBoxes">
+            <div class="box"><div class="num" id="days">00</div><div class="label">ថ្ងៃ</div></div>
+            <div class="box"><div class="num" id="hours">00</div><div class="label">ម៉ោង</div></div>
+            <div class="box"><div class="num" id="minutes">00</div><div class="label">នាទី</div></div>
+            <div class="box"><div class="num" id="seconds">00</div><div class="label">វិនាទី</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ៣) សារអញ្ជើញ -->
+  <section id="message">
+    <div class="container">
+      <div class="section-box">
+        <h2 class="title" style="font-size:clamp(20px,4.5vw,32px);text-align:center;margin:0 0 12px">សារអញ្ជើញ</h2>
+        <p class="center" style="color:var(--muted);margin:0">
+          ដោយមានក្តីសោមនស្សពីពុកម្តាយទាំងពីរ និងជឿជាក់លើស្នេហា យើងសូមអញ្ជើញអ្នកគ្រប់គ្នា មេត្តាមកចូលរួមជាភាគីសាក្សី និងជួយផ្តល់ពរ ក្នុងពិធីមង្គលការ។ ការចូលរួមរបស់លោកអ្នកគឺជាកិត្តិយសដ៏មានតម្លៃសម្រាប់គូស្នេហានេះ។
+        </p>
       </div>
     </div>
   </section>
@@ -245,23 +232,25 @@ section p {
   <!-- AGENDA / TIMELINE -->
   <section id="agenda">
     <div class="container">
-      <h2 class="title" style="font-size:clamp(24px,5vw,40px)">កាលវិភាគព្រឹត្តិការណ៍</h2>
-      <div class="timeline">
-        <div class="event">
-          <div class="dot">08:00</div>
-          <div><h4>ពិធីរាប់សិលាចារឹក</h4><p>ទទួលភ្ញៀវ និងថ្វាយភ្លើងទៀនបួស។</p></div>
-        </div>
-        <div class="event">
-          <div class="dot">10:00</div>
-          <div><h4>ពិធីសម្ពោធសម្ពាញ</h4><p>សន្ទស្សនាករណី អានពាក្យអំពាវនាវ និងថ្វាយពរ។</p></div>
-        </div>
-        <div class="event">
-          <div class="dot">12:00</div>
-          <div><h4>អាហារភ្ញៀវ</h4><p>ជប់ល្អិតទទួលទានអាហារ និងថតរូបជាមួយគូស្នេហា។</p></div>
-        </div>
-        <div class="event">
-          <div class="dot">18:00</div>
-          <div><h4>ពិធីជប់លៀងយប់</h4><p>កម្មវិធីការសម្តែង និងរាំវង់។</p></div>
+      <div class="section-box">
+        <h2 class="title" style="font-size:clamp(24px,5vw,40px);text-align:center;margin-top:0">កាលវិភាគព្រឹត្តិការណ៍</h2>
+        <div class="timeline">
+          <div class="event">
+            <div class="dot">08:00</div>
+            <div><h4>ពិធីរាប់សិលាចារឹក</h4><p>ទទួលភ្ញៀវ និងថ្វាយភ្លើងទៀនបួស។</p></div>
+          </div>
+          <div class="event">
+            <div class="dot">10:00</div>
+            <div><h4>ពិធីសម្ពោធសម្ពាញ</h4><p>សន្ទស្សនាករណី អានពាក្យអំពាវនាវ និងថ្វាយពរ។</p></div>
+          </div>
+          <div class="event">
+            <div class="dot">12:00</div>
+            <div><h4>អាហារភ្ញៀវ</h4><p>ជប់ល្អិតទទួលទានអាហារ និងថតរូបជាមួយគូស្នេហា។</p></div>
+          </div>
+          <div class="event">
+            <div class="dot">18:00</div>
+            <div><h4>ពិធីជប់លៀងយប់</h4><p>កម្មវិធីការសម្តែង និងរាំវង់។</p></div>
+          </div>
         </div>
       </div>
     </div>
@@ -270,27 +259,31 @@ section p {
   <!-- MAP -->
   <section id="map">
     <div class="container">
-      <h2 class="title" style="font-size:clamp(24px,5vw,40px)">ទីតាំងពិធី</h2>
-      <div class="mapwrap">
-        <iframe title="Google Map" src="https://www.google.com/maps?q=Phnom%20Penh&output=embed" width="100%" height="420" style="border:0" loading="lazy"></iframe>
+      <div class="section-box">
+        <h2 class="title" style="font-size:clamp(24px,5vw,40px);text-align:center;margin-top:0">ទីតាំងពិធី</h2>
+        <div class="mapwrap">
+          <iframe title="Google Map" src="https://www.google.com/maps?q=Phnom%20Penh&output=embed" width="100%" height="420" style="border:0" loading="lazy"></iframe>
+        </div>
+        <p class="muted center" style="margin:10px 0 0">បើមើលលម្អិតនៅលើផែនទី សូមចុចលើទីតាំងក្នុងផែនទីខាងលើ។</p>
       </div>
-      <p class="muted center">បើមើលលម្អិតនៅលើផែនទី សូមចុចលើទីតាំងក្នុងផែនទីខាងលើ។</p>
     </div>
   </section>
 
   <!-- GALLERY -->
   <section id="gallery">
     <div class="container">
-      <h2 class="title" style="font-size:clamp(24px,5vw,40px)">រូបភាពគូស្នេហា</h2>
-      <div class="gallery">
-        <div class="slides" id="slides">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="slide 1"/>
-          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1600&auto=format&fit=crop" alt="slide 2"/>
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="slide 3"/>
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop" alt="slide 4"/>
-          <img src="https://images.unsplash.com/photo-1513875528452-d859b4951b82?q=80&w=1600&auto=format&fit=crop" alt="slide 5"/>
+      <div class="section-box">
+        <h2 class="title" style="font-size:clamp(24px,5vw,40px);text-align:center;margin-top:0">រូបភាពគូស្នេហា</h2>
+        <div class="gallery">
+          <div class="slides" id="slides">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="slide 1"/>
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1600&auto=format&fit=crop" alt="slide 2"/>
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="slide 3"/>
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop" alt="slide 4"/>
+            <img src="https://images.unsplash.com/photo-1513875528452-d859b4951b82?q=80&w=1600&auto=format&fit=crop" alt="slide 5"/>
+          </div>
+          <div class="gctrl" id="gctrl"></div>
         </div>
-        <div class="gctrl" id="gctrl"></div>
       </div>
     </div>
   </section>
@@ -309,10 +302,23 @@ section p {
       if(input){
         document.getElementById('guestTarget').textContent = input;
         document.getElementById('popup').style.display='none';
+        try { localStorage.setItem('guestName', input); } catch(e){}
       } else {
         alert("សូមបញ្ចូលឈ្មោះរបស់អ្នក!");
       }
     }
+    // Restore guest name if saved
+    (function(){
+      try{
+        const n = localStorage.getItem('guestName');
+        if(n){
+          document.addEventListener('DOMContentLoaded', ()=>{
+            document.getElementById('guestTarget').textContent = n;
+            document.getElementById('popup').style.display='none';
+          });
+        }
+      }catch(e){}
+    })();
 
     // Smooth-scroll nav
     const links = document.querySelectorAll('nav a');
@@ -323,6 +329,8 @@ section p {
       });
     });
 
+    // Active link on scroll (include new sections)
+    const ids = ['home','greeting','countdown','message','agenda','map','gallery'];
     const obs = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
         const id = '#'+e.target.id;
@@ -335,7 +343,7 @@ section p {
         }
       });
     },{threshold:.35});
-    ['home','invite','agenda','map','gallery'].forEach(id=>obs.observe(document.getElementById(id)));
+    ids.forEach(id=>obs.observe(document.getElementById(id)));
 
     // Gallery slider
     const slides = document.getElementById('slides');
@@ -350,7 +358,7 @@ section p {
     function restart(){clearInterval(timer);timer=setInterval(next,3500);}
     restart();
 
-    // Countdown
+    // Countdown (kept 2026 to avoid past date mismatch with header)
     const targetDate = new Date("June 23, 2026 08:00:00").getTime();
     const dEl=document.getElementById("days"),
           hEl=document.getElementById("hours"),
@@ -374,10 +382,5 @@ section p {
       }
     },1000);
   </script>
-
-
 </body>
 </html>
-
-
-
