@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Numbered Clock</title>
+<style>
+  body {
+    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background:#0c0f14; color:#fff; font-family: "Inter", sans-serif;
+  }
+  .watch {
+    position:relative;
+    width:360px; height:360px;
+    border:12px solid #222;
+    border-radius:50%;
+    background: radial-gradient(circle at center, #1a2230, #0c0f14);
+    box-shadow: 0 10px 30px rgba(0,0,0,.6), inset 0 0 30px rgba(255,255,255,.05);
+  }
+
+  /* Hands */
+  .hand {
+    position:absolute; bottom:50%; left:50%;
+    transform-origin: bottom center;
+    border-radius:4px;
+  }
+  .hand.hour { width:6px; height:80px; background:#ffd36e; }
+  .hand.min  { width:4px; height:110px; background:#47e28a; }
+  .hand.sec  { width:2px; height:130px; background:#ff3b30; }
+
+  .center-dot {
+    position:absolute; width:16px; height:16px; border-radius:50%;
+    background:#fff; top:50%; left:50%; transform:translate(-50%,-50%);
+    box-shadow:0 0 6px #000;
+  }
+
+  /* Numbers instead of ticks */
+  .numbers {
+    position:absolute; inset:0; display:flex; justify-content:center; align-items:center;
+  }
+  .numbers span {
+    position:absolute;
+    font-size:18px; font-weight:700; color:#fff;
+    transform:translate(-50%,-50%);
+  }
+
+  /* Digital */
+  .info {
+    position:absolute; bottom:35px; left:50%; transform:translateX(-50%);
+    text-align:center;
+  }
+  .time {
+    font-size:22px; font-weight:700; letter-spacing:1px;
+  }
+  .date {
+    font-size:14px; color:#ccc; margin-top:4px;
+  }
+</style>
+</head>
+<body>
+<div class="watch">
+  <!-- Hands -->
+  <div class="hand hour" id="hour"></div>
+  <div class="hand min"  id="minute"></div>
+  <div class="hand sec"  id="second"></div>
+  <div class="center-dot"></div>
+
+  <!-- Numbers -->
+  <div class="numbers" id="numbers"></div>
+
+  <!-- Digital -->
+  <div class="info">
+    <div class="time" id="time">00:00:00</div>
+    <div class="date" id="date">Saturday, 16 Aug 2025</div>
+  </div>
+</div>
+
+<script>
+  const numbers = document.getElementById('numbers');
+  const radius = 150; // distance from center for numbers
+
+  // Place numbers 01–12
+  for (let i=1;i<=12;i++){
+    const angle = (i-3) * 30 * Math.PI/180; // shift -90° so 12 is top
+    const x = 180 + radius * Math.cos(angle);
+    const y = 180 + radius * Math.sin(angle);
+    const span = document.createElement('span');
+    span.style.left = x + "px";
+    span.style.top  = y + "px";
+    span.textContent = i.toString().padStart(2,'0');
+    numbers.appendChild(span);
+  }
+
+  function updateClock(){
+    const now=new Date();
+    const h=now.getHours(), m=now.getMinutes(), s=now.getSeconds();
+
+    document.getElementById('hour').style.transform=`translate(-50%,0) rotate(${(h%12)*30+m*0.5}deg)`;
+    document.getElementById('minute').style.transform=`translate(-50%,0) rotate(${m*6+s*0.1}deg)`;
+    document.getElementById('second').style.transform=`translate(-50%,0) rotate(${s*6}deg)`;
+
+    const pad=n=>String(n).padStart(2,'0');
+    document.getElementById('time').textContent=`${pad(h)}:${pad(m)}:${pad(s)}`;
+
+    const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    document.getElementById('date').textContent=
+      `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+  }
+  setInterval(updateClock,1000);
+  updateClock();
+</script>
+</body>
+</html>
