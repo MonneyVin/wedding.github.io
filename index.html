@@ -7,11 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&family=Noto+Serif+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --gold:#d4af37;
-      --dark:#0f1115;
-      --light:#fffaf0;
-      --muted:#e6dcc6;
-      --card:#1a1f29aa;
+      --gold:#d4af37;   
+      --dark:#0f1115;   
+      --light:#fffaf0;  
+      --muted:#e6dcc6;  
+      --card:#1a1f29aa; 
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
@@ -24,73 +24,98 @@
     }
     a{color:inherit;text-decoration:none}
     .bg{position:fixed;inset:0;z-index:-2;
-      background:url('https://images.unsplash.com/photo-1495462911434-be47104d70fa?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+      background:url('top01.JPG') center/cover no-repeat;
       filter:grayscale(10%);
     }
     .overlay{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg, rgba(5,7,10,.75), rgba(10,12,16,.85));}
-    .container{width:min(1100px,92vw);margin:0 auto;padding:16px}
+    .container{width:min(1100px, 92vw);margin-inline:auto;padding:20px}
 
     header{padding:80px 0 40px;text-align:center;}
     .badge{display:inline-block;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.35);color:var(--gold);padding:6px 12px;border-radius:999px;font-size:.9rem;backdrop-filter:blur(6px)}
-    .title{font-family:"Noto Serif Khmer",serif;font-weight:700;font-size:clamp(28px,6vw,56px);letter-spacing:.5px;margin:14px 0;color:#f7f3e8}
+    .title{font-family:"Noto Serif Khmer", serif;font-weight:700;font-size: clamp(28px, 6vw, 56px);letter-spacing:.5px;margin:14px 0;color:#f7f3e8}
     .subtitle{color:var(--muted);font-size:clamp(14px,2.6vw,18px)}
+
     .cta{margin-top:24px;display:inline-flex;gap:10px;align-items:center;padding:12px 20px;border-radius:999px;border:1px solid rgba(212,175,55,.5);
       background:linear-gradient(180deg, rgba(212,175,55,.25), rgba(212,175,55,.15));
       font-weight:700;letter-spacing:.2px;box-shadow:0 6px 20px rgba(212,175,55,.15);color:#fff}
     .cta:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(212,175,55,.25)}
 
-    /* ✅ Navbar with arrows */
-    nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;
-      background:rgba(15,17,21,.55);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08);}
-    .navwrap{flex:1;display:flex;gap:8px;overflow-x:auto;scroll-behavior:smooth;white-space:nowrap;}
-    .navwrap::-webkit-scrollbar{display:none}
-    nav a{padding:8px 12px;border-radius:999px;opacity:.9;font-size:15px;flex-shrink:0}
-    nav a.active,nav a:hover{background:rgba(255,255,255,.08)}
-    .nav-arrow{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:8px;flex-shrink:0}
+    /* nav */
+    nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;background:rgba(15,17,21,.55);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08);}
+    nav .navwrap{flex:1;display:flex;gap:10px;overflow-x:auto;scroll-behavior:smooth;padding:10px}
+    nav a{padding:10px 14px;border-radius:999px;opacity:.9;white-space:nowrap}
+    nav a.active, nav a:hover{background:rgba(255,255,255,.08)}
+    .nav-arrow{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:8px;flex-shrink:0;}
     .nav-arrow:hover{color:var(--gold)}
 
-    section{margin:24px auto;width:min(1100px,95%);}
-    .section-box{margin:0 auto;padding:20px;background:#111;border-radius:12px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+    section{margin:24px auto;width:min(1100px,95%);padding:20px;background:#111;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+    section h2{text-align:center;font-size:1.5rem;margin-bottom:15px;color:#fff}
+    section p{text-align:center;line-height:1.6;color:#ddd}
 
-    .names{font-family:"Noto Serif Khmer",serif;font-size:clamp(22px,4.5vw,34px);text-align:center}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;backdrop-filter:blur(6px);margin-top:16px}
+    .names{font-family:"Noto Serif Khmer", serif;font-size:clamp(22px,4.5vw,34px);text-align:center}
     .names span{color:var(--gold)}
 
+    /* Couple photos */
+    .couple-photos {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .couple-photos .person {
+      text-align: center;
+    }
+    .couple-photos img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--gold);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform .4s ease, box-shadow .4s ease;
+    }
+    .couple-photos img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 20px rgba(212,175,55,0.6);
+    }
+    .couple-photos h4 {
+      margin-top: 12px;
+      font-family: "Noto Serif Khmer", serif;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    /* Timeline */
     .timeline{display:grid;gap:14px;margin-top:8px}
     .event{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start;background:rgba(255,255,255,.04);padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.06)}
     .dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px dashed rgba(212,175,55,.6);color:var(--gold);font-weight:700}
     .event h4{margin:0 0 4px;font-size:18px;color:#fff}
     .event p{margin:0;color:var(--muted)}
 
-    .mapwrap{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
-    .gallery{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
-    .slides{display:flex;transition:transform .6s ease}
-    .slides img{width:100%;height:360px;object-fit:cover;flex:0 0 100%}
-    .gctrl{position:absolute;inset:auto 0 12px;display:flex;gap:8px;justify-content:center}
-    .dotbtn{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.8);background:rgba(255,255,255,.2)}
-    .dotbtn.active{background:var(--gold);border-color:var(--gold)}
-
     footer{padding:48px 0 64px;text-align:center;color:var(--muted)}
-    .thanks{font-family:"Noto Serif Khmer",serif;font-size:clamp(20px,4vw,28px);color:#f0e9d6}
+    .thanks{font-family:"Noto Serif Khmer", serif;font-size:clamp(20px,4vw,28px);color:#f0e9d6}
 
     /* Countdown */
-    .countdown{text-align:center;margin:0 0 20px;font-family:"Noto Serif Khmer",serif;}
+    .countdown{text-align:center;margin:0 0 20px;font-family:"Noto Serif Khmer", serif;}
     .countdown h3{font-size:clamp(18px,4vw,26px);margin-bottom:10px;color:var(--gold);}
-    .countdown .time{display:flex;justify-content:center;gap:14px;}
-    .countdown .box{background:rgba(255,255,255,.08);padding:12px 16px;border-radius:12px;min-width:70px;}
+    .countdown .time{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+    .countdown .box{background:rgba(255,255,255,.08);padding:12px 16px;border-radius:12px;min-width:70px;text-align:center}
     .countdown .num{font-size:22px;font-weight:700;color:#fff}
     .countdown .label{font-size:14px;color:var(--muted)}
   </style>
 </head>
 <body>
-  <div class="bg"></div><div class="overlay"></div>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="overlay" aria-hidden="true"></div>
 
-  <!-- Navbar -->
+  <!-- Sticky mini-nav -->
   <nav>
     <button class="nav-arrow left" onclick="scrollNav(-150)">‹</button>
     <div class="navwrap container" id="navwrap">
       <a href="#home">គេហទំព័រ</a>
-      <a href="#greeting">សូមគោរពអញ្ជើញ</a>
+      <a href="#invite">សូមគោរពអញ្ជើញ</a>
       <a href="#countdown">ចាប់ផ្តើមនៅក្នុង</a>
       <a href="#message">សារអញ្ជើញ</a>
       <a href="#agenda">កាលវិភាគ</a>
@@ -100,102 +125,92 @@
     <button class="nav-arrow right" onclick="scrollNav(150)">›</button>
   </nav>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <header id="home" class="container">
     <span class="badge">សូមអញ្ជើញជួបជុំក្នុងពិធីសាមគ្គីភាពស្នេហា</span>
     <h1 class="title">ពិធីមង្គលការ</h1>
-    <p class="subtitle">ថ្ងៃអាទិត្យ ទី២៣ ខែមិថុនា ឆ្នាំ២០២៥ · ចាប់ផ្តើមម៉ោង ០៨:០០ ព្រឹក</p>
-    <a class="cta" href="#greeting">មើលលិខិតអញ្ជើញ</a>
+    <p class="subtitle">ថ្ងៃអាទិត្យ ទី១៧ ខែមករា ឆ្នាំ២០២៦ · ចាប់ផ្តើមម៉ោង ០៨:០០ ព្រឹក</p>
+    <a class="cta" href="#invite">មើលលិខិតអញ្ជើញ</a>
   </header>
 
-  <!-- Greeting -->
-  <section id="greeting">
-    <div class="section-box">
-      <div class="names">សូមគោរពអញ្ជើញ <span id="guestTarget">លោក ខេមរៈ</span></div>
-      <p style="text-align:center;color:#ddd">ជាកិត្តិយសយ៉ាងខ្ពង់ខ្ពស់ សូមអញ្ជើញថ្វាយព្រះរាជពិធី និងរីករាយជាមួយយើង ក្នុងឱកាសរៀបអាពាហ៍ពិពាហ៍។</p>
+  <!-- INVITE -->
+  <section id="invite">
+    <h2>សូមគោរពអញ្ជើញ</h2>
+    <p>ជាកិត្តិយសយ៉ាងខ្ពង់ខ្ពស់ សូមអញ្ជើញលោកអ្នកចូលរួមពិធីមង្គលការ។</p>
+
+    <!-- Couple photos -->
+    <div class="couple-photos">
+      <div class="person">
+        <img src="Groom.JPG" alt="Groom">
+        <h4>លោក កំលោះ</h4>
+      </div>
+      <div class="person">
+        <img src="Bride.JPG" alt="Bride">
+        <h4>កញ្ញា ក្រមុំពីរ</h4>
+      </div>
     </div>
   </section>
 
-  <!-- Countdown -->
+  <!-- COUNTDOWN -->
   <section id="countdown">
-    <div class="section-box">
-      <div class="countdown">
-        <h3>ចាប់ផ្តើមនៅក្នុង</h3>
-        <div class="time" id="countdownTimer">
-          <div class="box"><div class="num" id="days">00</div><div class="label">ថ្ងៃ</div></div>
-          <div class="box"><div class="num" id="hours">00</div><div class="label">ម៉ោង</div></div>
-          <div class="box"><div class="num" id="minutes">00</div><div class="label">នាទី</div></div>
-          <div class="box"><div class="num" id="seconds">00</div><div class="label">វិនាទី</div></div>
-        </div>
+    <div class="countdown">
+      <h3>ចាប់ផ្តើមនៅក្នុង</h3>
+      <div class="time" id="countdown">
+        <div class="box"><div class="num" id="days">00</div><div class="label">ថ្ងៃ</div></div>
+        <div class="box"><div class="num" id="hours">00</div><div class="label">ម៉ោង</div></div>
+        <div class="box"><div class="num" id="minutes">00</div><div class="label">នាទី</div></div>
+        <div class="box"><div class="num" id="seconds">00</div><div class="label">វិនាទី</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Message -->
+  <!-- MESSAGE -->
   <section id="message">
-    <div class="section-box">
-      <h3 style="text-align:center;color:var(--gold)">សារអញ្ជើញ</h3>
-      <p style="text-align:center;color:#ddd">ដោយមានក្តីសោមនស្សពីពុកម្តាយទាំងពីរ និងជឿជាក់លើស្នេហា យើងសូមអញ្ជើញអ្នកគ្រប់គ្នា មេត្តាមកចូលរួមជាភាគីសាក្សី និងជួយផ្តល់ពរ ក្នុងពិធីមង្គលការ។</p>
-    </div>
+    <h2>សារអញ្ជើញ</h2>
+    <p>ដោយមានក្តីសោមនស្សពីពុកម្តាយទាំងពីរ យើងសូមអញ្ជើញអ្នកគ្រប់គ្នា មកចូលរួមជាភាគីសាក្សី និងរីករាយជាមួយយើង។</p>
   </section>
 
-  <!-- Agenda -->
+  <!-- AGENDA -->
   <section id="agenda">
-    <div class="section-box">
-      <h2 class="title" style="font-size:clamp(24px,5vw,40px)">កាលវិភាគព្រឹត្តិការណ៍</h2>
-      <div class="timeline">
-        <div class="event"><div class="dot">08:00</div><div><h4>ពិធីរាប់សិលាចារឹក</h4><p>ទទួលភ្ញៀវ និងថ្វាយភ្លើងទៀនបួស។</p></div></div>
-        <div class="event"><div class="dot">10:00</div><div><h4>ពិធីសម្ពោធសម្ពាញ</h4><p>សន្ទស្សនាករណី អានពាក្យអំពាវនាវ និងថ្វាយពរ។</p></div></div>
-        <div class="event"><div class="dot">12:00</div><div><h4>អាហារភ្ញៀវ</h4><p>ជប់ល្អិតទទួលទានអាហារ និងថតរូបជាមួយគូស្នេហា។</p></div></div>
-        <div class="event"><div class="dot">18:00</div><div><h4>ពិធីជប់លៀងយប់</h4><p>កម្មវិធីការសម្តែង និងរាំវង់។</p></div></div>
-      </div>
+    <h2>កាលវិភាគព្រឹត្តិការណ៍</h2>
+    <div class="timeline">
+      <div class="event"><div class="dot">08:00</div><div><h4>ពិធីរាប់សិលាចារឹក</h4><p>ទទួលភ្ញៀវ និងថ្វាយភ្លើងទៀនបួស។</p></div></div>
+      <div class="event"><div class="dot">10:00</div><div><h4>ពិធីសម្ពោធសម្ពាញ</h4><p>អានពាក្យអំពាវនាវ និងថ្វាយពរ។</p></div></div>
+      <div class="event"><div class="dot">12:00</div><div><h4>អាហារភ្ញៀវ</h4><p>ទទួលទានអាហារ និងថតរូបជាមួយគូស្នេហា។</p></div></div>
+      <div class="event"><div class="dot">18:00</div><div><h4>ពិធីជប់លៀងយប់</h4><p>ការសម្តែង និងរាំវង់។</p></div></div>
     </div>
   </section>
 
-  <!-- Map -->
+  <!-- MAP -->
   <section id="map">
-    <div class="section-box">
-      <h2 class="title" style="font-size:clamp(24px,5vw,40px)">ទីតាំងពិធី</h2>
-      <div class="mapwrap">
-        <iframe title="Google Map" src="https://www.google.com/maps?q=Phnom%20Penh&output=embed" width="100%" height="420" style="border:0" loading="lazy"></iframe>
-      </div>
-    </div>
+    <h2>ទីតាំងពិធី</h2>
+    <iframe title="Google Map" src="https://www.google.com/maps?q=Phnom%20Penh&output=embed" width="100%" height="420" style="border:0" loading="lazy"></iframe>
   </section>
 
-  <!-- Gallery -->
+  <!-- GALLERY -->
   <section id="gallery">
-    <div class="section-box">
-      <h2 class="title" style="font-size:clamp(24px,5vw,40px)">រូបភាពគូស្នេហា</h2>
-      <div class="gallery">
-        <div class="slides" id="slides">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="slide1"/>
-          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1600&auto=format&fit=crop" alt="slide2"/>
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop" alt="slide3"/>
-        </div>
-        <div class="gctrl" id="gctrl"></div>
-      </div>
-    </div>
+    <h2>រូបភាពគូស្នេហា</h2>
+    <p>Gallery here…</p>
   </section>
 
   <footer>
-    <div class="container">
-      <div class="thanks">អរគុណសម្រាប់ការអញ្ជើញមកទស្សនា!</div>
-      <div class="muted">© ២០២៥ · គូស្នេហា</div>
-    </div>
+    <div class="thanks">អរគុណសម្រាប់ការអញ្ជើញមកទស្សនា!</div>
+    <div class="muted">© ២០២៦ · គូស្នេហា</div>
   </footer>
 
   <script>
-    // Navbar scroll with arrows
+    // Scroll nav with arrow
     function scrollNav(offset){
       document.getElementById('navwrap').scrollBy({left:offset,behavior:'smooth'});
     }
 
     // Countdown
-    const targetDate = new Date("Jan 17, 2026 08:00:00").getTime();
+    const targetDate = new Date("January 17, 2026 08:00:00").getTime();
     const dEl=document.getElementById("days"),
           hEl=document.getElementById("hours"),
           mEl=document.getElementById("minutes"),
           sEl=document.getElementById("seconds");
+
     setInterval(()=>{
       const now = new Date().getTime();
       const diff = targetDate - now;
@@ -208,21 +223,10 @@
         hEl.textContent=h<10?"0"+h:h;
         mEl.textContent=m<10?"0"+m:m;
         sEl.textContent=s<10?"0"+s:s;
+      } else {
+        dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent="00";
       }
     },1000);
-
-    // Gallery
-    const slides=document.getElementById('slides');
-    const imgs=slides.querySelectorAll('img');
-    const ctrl=document.getElementById('gctrl');
-    let idx=0,n=imgs.length,timer;
-    function go(i){idx=(i+n)%n;slides.style.transform=`translateX(-${idx*100}%)`;updateDots();}
-    function updateDots(){ctrl.querySelectorAll('.dotbtn').forEach((b,j)=>b.classList.toggle('active',j===idx));}
-    for(let i=0;i<n;i++){const b=document.createElement('button');b.className='dotbtn';b.addEventListener('click',()=>{go(i);restart();});ctrl.appendChild(b);}
-    updateDots();
-    function next(){go(idx+1);}
-    function restart(){clearInterval(timer);timer=setInterval(next,3500);}
-    restart();
   </script>
 </body>
 </html>
