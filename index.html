@@ -32,7 +32,7 @@
     }
     .overlay{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg, rgba(5,7,10,.75), rgba(10,12,16,.85));}
 
-    .container{width:min(auto);margin-inline:auto;padding:24px}
+    .container{width:min(1100px, 92vw);margin-inline:auto;padding:24px}
 
     /* Header */
     header{padding:80px 0 40px;text-align:center;}
@@ -55,10 +55,11 @@
     nav a.active, nav a:hover{background:rgba(255,255,255,.08)}
 
     /* Section look unified like agenda */
+    section{padding:15px 0}
     section {
-  margin: auto;         /* ចន្លោះលើ-ក្រោម 20px, មិនឆ្ងាយពេក */
-  padding: auto;             /* ខ្លឹមសារនៅក្នុង */
-  width: min(auto);   /* នៅកណ្ដាល, ទទឹង 95% នៅលើ mobile */
+  margin: 15px auto;         /* ចន្លោះលើ-ក្រោម 20px, មិនឆ្ងាយពេក */
+  padding: 15px;             /* ខ្លឹមសារនៅក្នុង */
+  width: min(95%, 1100px);   /* នៅកណ្ដាល, ទទឹង 95% នៅលើ mobile */
   background: #111;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
