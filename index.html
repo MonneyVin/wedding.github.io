@@ -46,8 +46,12 @@
 
     /* Sticky mini-nav */
     nav{position:sticky;top:0;z-index:10;background:rgba(15,17,21,.55);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08);}
-    nav .navwrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;padding:10px}
-    nav a{padding:10px 14px;border-radius:999px;opacity:.9}
+    nav .navwrap{display:flex;flex-wrap:nowrap;gap:8px;align-items:center;justify-content:center;padding:10px}
+    nav a {
+  padding: 8px 12px;
+  font-size: 15px;
+  white-space: nowrap;
+}
     nav a.active, nav a:hover{background:rgba(255,255,255,.08)}
 
     /* Section look unified like agenda */
@@ -98,7 +102,16 @@
     @media (min-width: 960px){
       .grid.two{gap:24px}
     }
-
+/* Mobile optimization */
+@media (max-width: 600px) {
+  nav .navwrap {
+    gap: 4px;             /* បន្ថយចន្លោះ link */
+  }
+  nav a {
+    padding: 6px 8px;     /* បន្ថយ padding */
+    font-size: 13px;      /* អក្សរតូចជាង */
+  }
+}
     /* Couple layout */
     .couple{display:grid;grid-template-columns:1fr;gap:24px}
     @media (min-width: 960px){
@@ -384,4 +397,3 @@
   </script>
 </body>
 </html>
-
