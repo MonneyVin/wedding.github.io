@@ -22,6 +22,17 @@
       line-height:1.6;
       overflow-x:hidden;
     }
+
+    /* scroll image animation */
+.scroll-animate {
+  opacity: 0;
+  transform: scale(1.1) translateY(30px);
+  transition: all 1s ease;
+}
+.scroll-animate.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
     a{color:inherit;text-decoration:none}
     .bg{position:fixed;inset:0;z-index:-2;
       background:url('top01.JPG') center/cover no-repeat;
@@ -120,16 +131,15 @@
   </header>
 
   <!-- INVITE -->
-  <section id="invite">
-    <div class="container">
-      <h2 class="title-section">សូមគោរពអញ្ជើញ</h2>
-      <p class="center muted">ឯកឧត្តម លោកឧកញ្ញា លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួម ជាអធិបតី និង ជាភ្ញៀវកិត្តយស ចម្រើនជោគជ័យ សីរីសួស្ដី ក្នុងពីធីអាពារហ៍ពីពារហ៍ កូនប្រុស ស្រី របស់យើងខ្ញ ។
-</p>
-      <div class="invite-image">
-        <img src="gb.png" alt="Groom and Bride">
-      </div>
+<section id="invite">
+  <div class="container">
+    <h2 class="title-section">សូមគោរពអញ្ជើញ</h2>
+    <p class="center muted">ជាកិត្តិយសយ៉ាងខ្ពង់ខ្ពស់ សូមអញ្ជើញលោកអ្នកចូលរួមពិធីមង្គលការ។</p>
+    <div class="invite-image">
+      <img class="scroll-animate" src="gb.jpg" alt="Groom and Bride">
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- AGENDA -->
   <section id="agenda">
@@ -227,6 +237,19 @@
       });
     },{threshold:0.2});
     sections.forEach(sec=>observer.observe(sec));
+
+    // Scroll animation for invite image
+const imgAnimate = document.querySelectorAll(".scroll-animate");
+const imgObs = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{threshold:0.3});
+imgAnimate.forEach(img=>imgObs.observe(img));
   </script>
+
+
 </body>
 </html>
