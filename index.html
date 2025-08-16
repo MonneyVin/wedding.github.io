@@ -37,71 +37,59 @@
 
     .cta{margin-top:24px;display:inline-flex;gap:10px;align-items:center;padding:12px 20px;border-radius:999px;border:1px solid rgba(212,175,55,.5);
       background:linear-gradient(180deg, rgba(212,175,55,.25), rgba(212,175,55,.15));
-      font-weight:700;letter-spacing:.2px;box-shadow:0 6px 20px rgba(212,175,55,.15);color:#fff}
-    .cta:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(212,175,55,.25)}
+      font-weight:700;letter-spacing:.2px;box-shadow:0 6px 20px rgba(212,175,55,.15);color:#fff;transition:all .3s ease}
+    .cta:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 10px 30px rgba(212,175,55,.25)}
 
-    /* nav */
-    nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;background:rgba(15,17,21,.55);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08);}
-    nav .navwrap{flex:1;display:flex;gap:10px;overflow-x:auto;scroll-behavior:smooth;padding:10px}
+    /* nav with arrows */
+    nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;background:rgba(15,17,21,.55);backdrop-filter:blur(8px);}
+    nav .navwrap{flex:1;display:flex;gap:12px;overflow-x:auto;scroll-behavior:smooth;}
     nav a{padding:10px 14px;border-radius:999px;opacity:.9;white-space:nowrap}
     nav a.active, nav a:hover{background:rgba(255,255,255,.08)}
     .nav-arrow{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:8px;flex-shrink:0;}
     .nav-arrow:hover{color:var(--gold)}
 
-    section{margin:24px auto;width:min(1100px,95%);padding:20px;background:#111;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
-    section h2{text-align:center;font-size:1.5rem;margin-bottom:15px;color:#fff}
-    section p{text-align:center;line-height:1.6;color:#ddd}
+    section{margin:32px auto;width:min(1100px,95%);opacity:0;transform:translateY(40px);transition:all .8s ease}
+    section.show{opacity:1;transform:translateY(0)}
 
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;backdrop-filter:blur(6px);margin-top:16px}
-    .names{font-family:"Noto Serif Khmer", serif;font-size:clamp(22px,4.5vw,34px);text-align:center}
-    .names span{color:var(--gold)}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;backdrop-filter:blur(6px)}
 
-    /* Couple photos */
-    .couple-photos {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 24px;
-      flex-wrap: wrap;
-    }
-    .couple-photos .person {
-      text-align: center;
-    }
-    .couple-photos img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--gold);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: transform .4s ease, box-shadow .4s ease;
-    }
-    .couple-photos img:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 20px rgba(212,175,55,0.6);
-    }
-    .couple-photos h4 {
-      margin-top: 12px;
-      font-family: "Noto Serif Khmer", serif;
-      font-size: 18px;
-      color: #fff;
-    }
+    .title-section{font-family:"Noto Serif Khmer", serif;font-size:clamp(22px,4.5vw,34px);text-align:center;margin-bottom:12px}
 
-    /* Timeline */
+    .invite-image{margin-top:20px;border-radius:12px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.3);}
+    .invite-image img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .6s ease;}
+    .invite-image img:hover{transform:scale(1.03);}
+
     .timeline{display:grid;gap:14px;margin-top:8px}
-    .event{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start;background:rgba(255,255,255,.04);padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.06)}
-    .dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px dashed rgba(212,175,55,.6);color:var(--gold);font-weight:700}
+    .event{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start;background:rgba(255,255,255,.04);padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.06);transition:all .3s ease;cursor:pointer;}
+    .dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px dashed rgba(212,175,55,.6);color:var(--gold);font-weight:700;transition:all .3s ease}
     .event h4{margin:0 0 4px;font-size:18px;color:#fff}
     .event p{margin:0;color:var(--muted)}
+    .event:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 6px 20px rgba(212,175,55,.2);background:rgba(255,255,255,.08);}
+    .event:active{transform:scale(0.98);}
 
-    footer{padding:48px 0 64px;text-align:center;color:var(--muted)}
+    .mapwrap{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+    .gallery{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+    .slides{display:flex;transition:transform .6s ease}
+    .slides img{width:100%;height:360px;object-fit:cover;flex:0 0 100%}
+    .gctrl{position:absolute;inset:auto 0 12px;display:flex;gap:8px;justify-content:center}
+    .dotbtn{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.8);background:rgba(255,255,255,.2)}
+    .dotbtn.active{background:var(--gold);border-color:var(--gold)}
+
+    footer{padding:48px 0 64px;text-align:center;color:var(--muted);opacity:0;transform:translateY(40px);transition:all .8s ease}
+    footer.show{opacity:1;transform:translateY(0)}
     .thanks{font-family:"Noto Serif Khmer", serif;font-size:clamp(20px,4vw,28px);color:#f0e9d6}
+
+    .grid{display:grid;gap:24px}
+    .grid.two{grid-template-columns:1fr;}
+    @media (min-width: 860px){
+      .grid.two{grid-template-columns:1.1fr .9fr}
+    }
 
     /* Countdown */
     .countdown{text-align:center;margin:0 0 20px;font-family:"Noto Serif Khmer", serif;}
     .countdown h3{font-size:clamp(18px,4vw,26px);margin-bottom:10px;color:var(--gold);}
-    .countdown .time{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
-    .countdown .box{background:rgba(255,255,255,.08);padding:12px 16px;border-radius:12px;min-width:70px;text-align:center}
+    .countdown .time{display:flex;justify-content:center;gap:14px;}
+    .countdown .box{background:rgba(255,255,255,.08);padding:12px 16px;border-radius:12px;min-width:70px;}
     .countdown .num{font-size:22px;font-weight:700;color:#fff}
     .countdown .label{font-size:14px;color:var(--muted)}
   </style>
@@ -110,14 +98,12 @@
   <div class="bg" aria-hidden="true"></div>
   <div class="overlay" aria-hidden="true"></div>
 
-  <!-- Sticky mini-nav -->
+  <!-- nav -->
   <nav>
     <button class="nav-arrow left" onclick="scrollNav(-150)">‹</button>
     <div class="navwrap container" id="navwrap">
       <a href="#home">គេហទំព័រ</a>
       <a href="#invite">សូមគោរពអញ្ជើញ</a>
-      <a href="#countdown">ចាប់ផ្តើមនៅក្នុង</a>
-      <a href="#message">សារអញ្ជើញ</a>
       <a href="#agenda">កាលវិភាគ</a>
       <a href="#map">ទីតាំង</a>
       <a href="#gallery">រូបភាព</a>
@@ -135,98 +121,111 @@
 
   <!-- INVITE -->
   <section id="invite">
-    <h2>សូមគោរពអញ្ជើញ</h2>
-    <p>ជាកិត្តិយសយ៉ាងខ្ពង់ខ្ពស់ សូមអញ្ជើញលោកអ្នកចូលរួមពិធីមង្គលការ។</p>
-
-    <!-- Couple photos -->
-    <div class="couple-photos">
-      <div class="person">
-        <img src="Groom.JPG" alt="Groom">
-        <h4>លោក កំលោះ</h4>
-      </div>
-      <div class="person">
-        <img src="Bride.JPG" alt="Bride">
-        <h4>កញ្ញា ក្រមុំពីរ</h4>
+    <div class="container">
+      <h2 class="title-section">សូមគោរពអញ្ជើញ</h2>
+      <p class="center muted">ជាកិត្តិយសយ៉ាងខ្ពង់ខ្ពស់ សូមអញ្ជើញលោកអ្នកចូលរួមពិធីមង្គលការ។</p>
+      <div class="invite-image">
+        <img src="couple-banner.jpg" alt="Groom and Bride">
       </div>
     </div>
-  </section>
-
-  <!-- COUNTDOWN -->
-  <section id="countdown">
-    <div class="countdown">
-      <h3>ចាប់ផ្តើមនៅក្នុង</h3>
-      <div class="time" id="countdown">
-        <div class="box"><div class="num" id="days">00</div><div class="label">ថ្ងៃ</div></div>
-        <div class="box"><div class="num" id="hours">00</div><div class="label">ម៉ោង</div></div>
-        <div class="box"><div class="num" id="minutes">00</div><div class="label">នាទី</div></div>
-        <div class="box"><div class="num" id="seconds">00</div><div class="label">វិនាទី</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MESSAGE -->
-  <section id="message">
-    <h2>សារអញ្ជើញ</h2>
-    <p>ដោយមានក្តីសោមនស្សពីពុកម្តាយទាំងពីរ យើងសូមអញ្ជើញអ្នកគ្រប់គ្នា មកចូលរួមជាភាគីសាក្សី និងរីករាយជាមួយយើង។</p>
   </section>
 
   <!-- AGENDA -->
   <section id="agenda">
-    <h2>កាលវិភាគព្រឹត្តិការណ៍</h2>
-    <div class="timeline">
-      <div class="event"><div class="dot">08:00</div><div><h4>ពិធីរាប់សិលាចារឹក</h4><p>ទទួលភ្ញៀវ និងថ្វាយភ្លើងទៀនបួស។</p></div></div>
-      <div class="event"><div class="dot">10:00</div><div><h4>ពិធីសម្ពោធសម្ពាញ</h4><p>អានពាក្យអំពាវនាវ និងថ្វាយពរ។</p></div></div>
-      <div class="event"><div class="dot">12:00</div><div><h4>អាហារភ្ញៀវ</h4><p>ទទួលទានអាហារ និងថតរូបជាមួយគូស្នេហា។</p></div></div>
-      <div class="event"><div class="dot">18:00</div><div><h4>ពិធីជប់លៀងយប់</h4><p>ការសម្តែង និងរាំវង់។</p></div></div>
+    <div class="container">
+      <h2 class="title-section">កាលវិភាគព្រឹត្តិការណ៍</h2>
+      <div class="timeline">
+        <div class="event"><div class="dot">08:00</div><div><h4>ពិធីរាប់សិលាចារឹក</h4><p>ទទួលភ្ញៀវ និងថ្វាយភ្លើងទៀនបួស។</p></div></div>
+        <div class="event"><div class="dot">10:00</div><div><h4>ពិធីសម្ពោធសម្ពាញ</h4><p>សន្ទស្សនាករណី អានពាក្យអំពាវនាវ និងថ្វាយពរ។</p></div></div>
+        <div class="event"><div class="dot">12:00</div><div><h4>អាហារភ្ញៀវ</h4><p>ជប់ល្អិតទទួលទានអាហារ និងថតរូបជាមួយគូស្នេហា។</p></div></div>
+        <div class="event"><div class="dot">18:00</div><div><h4>ពិធីជប់លៀងយប់</h4><p>កម្មវិធីការសម្តែង និងរាំវង់។</p></div></div>
+      </div>
     </div>
   </section>
 
   <!-- MAP -->
   <section id="map">
-    <h2>ទីតាំងពិធី</h2>
-    <iframe title="Google Map" src="https://www.google.com/maps?q=Phnom%20Penh&output=embed" width="100%" height="420" style="border:0" loading="lazy"></iframe>
+    <div class="container">
+      <h2 class="title-section">ទីតាំងពិធី</h2>
+      <div class="mapwrap">
+        <iframe title="Google Map" src="https://www.google.com/maps?q=Phnom%20Penh&output=embed" width="100%" height="420" style="border:0" loading="lazy"></iframe>
+      </div>
+    </div>
   </section>
 
   <!-- GALLERY -->
   <section id="gallery">
-    <h2>រូបភាពគូស្នេហា</h2>
-    <p>Gallery here…</p>
+    <div class="container">
+      <h2 class="title-section">រូបភាពគូស្នេហា</h2>
+      <div class="gallery">
+        <div class="slides" id="slides">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="slide 1"/>
+          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1600&auto=format&fit=crop" alt="slide 2"/>
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop" alt="slide 3"/>
+        </div>
+        <div class="gctrl" id="gctrl"></div>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <div class="thanks">អរគុណសម្រាប់ការអញ្ជើញមកទស្សនា!</div>
-    <div class="muted">© ២០២៦ · គូស្នេហា</div>
+    <div class="container">
+      <div class="thanks">អរគុណសម្រាប់ការអញ្ជើញមកទស្សនា!</div>
+      <div class="muted">© ២០២៦ · គូស្នេហា</div>
+    </div>
   </footer>
 
   <script>
-    // Scroll nav with arrow
+    // nav scroll arrows
     function scrollNav(offset){
       document.getElementById('navwrap').scrollBy({left:offset,behavior:'smooth'});
     }
 
+    // active link highlight
+    const links = document.querySelectorAll('nav a');
+    const obsMenu = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        const id='#'+e.target.id;
+        const link=[...links].find(l=>l.getAttribute('href')===id);
+        if(link){
+          if(e.isIntersecting){
+            links.forEach(l=>l.classList.remove('active'));
+            link.classList.add('active');
+          }
+        }
+      });
+    },{threshold:.35});
+    ['home','invite','agenda','map','gallery'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el) obsMenu.observe(el);
+    });
+
+    // Gallery slider
+    const slides=document.getElementById('slides');
+    const imgs=slides.querySelectorAll('img');
+    const ctrl=document.getElementById('gctrl');
+    let idx=0,n=imgs.length,timer;
+    function go(i){idx=(i+n)%n;slides.style.transform=`translateX(-${idx*100}%)`;updateDots();}
+    function updateDots(){ctrl.querySelectorAll('.dotbtn').forEach((b,j)=>b.classList.toggle('active',j===idx));}
+    for(let i=0;i<n;i++){const b=document.createElement('button');b.className='dotbtn';b.addEventListener('click',()=>{go(i);restart();});ctrl.appendChild(b);}
+    updateDots();
+    function next(){go(idx+1);}
+    function restart(){clearInterval(timer);timer=setInterval(next,3500);}
+    restart();
+
     // Countdown
     const targetDate = new Date("January 17, 2026 08:00:00").getTime();
-    const dEl=document.getElementById("days"),
-          hEl=document.getElementById("hours"),
-          mEl=document.getElementById("minutes"),
-          sEl=document.getElementById("seconds");
 
-    setInterval(()=>{
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-      if(diff>0){
-        const d=Math.floor(diff/(1000*60*60*24));
-        const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-        const m=Math.floor((diff%(1000*60*60))/(1000*60));
-        const s=Math.floor((diff%(1000*60))/1000);
-        dEl.textContent=d<10?"0"+d:d;
-        hEl.textContent=h<10?"0"+h:h;
-        mEl.textContent=m<10?"0"+m:m;
-        sEl.textContent=s<10?"0"+s:s;
-      } else {
-        dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent="00";
-      }
-    },1000);
+    // Scroll animations
+    const sections=document.querySelectorAll("section, footer");
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    },{threshold:0.2});
+    sections.forEach(sec=>observer.observe(sec));
   </script>
 </body>
 </html>
