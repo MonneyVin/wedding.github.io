@@ -7,6 +7,7 @@
   <!-- Khmer-friendly fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&family=Noto+Serif+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    
     :root{
       --gold:#d4af37;   
       --dark:#0f1115;   
@@ -17,6 +18,7 @@
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     body{
+      margin: 10px;
       font-family:"Kantumruy Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--light);
       background:#0d0f14;
@@ -100,6 +102,38 @@
       color:#fff;font-weight:700;cursor:pointer;
     }
     .popup-box button:hover{background:#b9942d}
+
+    /* Countdown */
+    .countdown{
+      text-align:center;
+      margin:0 0 20px;
+      font-family:"Noto Serif Khmer", serif;
+    }
+    .countdown h3{
+      font-size:clamp(18px,4vw,26px);
+      margin-bottom:10px;
+      color:var(--gold);
+    }
+    .countdown .time{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+    }
+    .countdown .box{
+      background:rgba(255,255,255,.08);
+      padding:12px 16px;
+      border-radius:12px;
+      min-width:70px;
+    }
+    .countdown .num{
+      font-size:22px;
+      font-weight:700;
+      color:#fff;
+    }
+    .countdown .label{
+      font-size:14px;
+      color:var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -137,6 +171,20 @@
   <!-- COUPLE & INVITE TEXT -->
   <section id="invite">
     <div class="container couple">
+
+      <!-- COUNTDOWN -->
+      <div class="card">
+        <div class="countdown">
+          <h3>ចាប់ផ្តើមនៅក្នុង</h3>
+          <div class="time" id="countdown">
+            <div class="box"><div class="num" id="days">00</div><div class="label">ថ្ងៃ</div></div>
+            <div class="box"><div class="num" id="hours">00</div><div class="label">ម៉ោង</div></div>
+            <div class="box"><div class="num" id="minutes">00</div><div class="label">នាទី</div></div>
+            <div class="box"><div class="num" id="seconds">00</div><div class="label">វិនាទី</div></div>
+          </div>
+        </div>
+      </div>
+
       <div class="card">
         <div class="names">សូមគោរពអញ្ជើញ <span id="guestTarget">លោក ខេមរៈ</span> និង <span>ដៃគូរ</span></div>
         <p class="center muted">ជាកិត្តិយសយ៉ាងខ្ពង់ខ្ពស់ សូមអញ្ជើញថ្វាយព្រះរាជពិធី និងរីករាយជាមួយយើង ក្នុងឱកាសរៀបអាពាហ៍ពិពាហ៍។</p>
@@ -151,11 +199,11 @@
             <div class="label">ទីកន្លែង</div>
             <div>មហោស្រព <em>Rose Garden</em>, ភ្នំពេញ</div>
             <div class="label" style="margin-top:10px">ទំនាក់ទំនង</div>
-            <div>☎️ 012 345 678 · 📱 098 765 432</div>
+            <div>☎️ 087 77 88 14 </div>
           </div>
         </div>
         <div class="center" style="margin-top:18px">
-          <a class="cta" href="tel:+85512345678">ហៅសួរព័ត៌មាន</a>
+          <a class="cta" href="tel:+85587778814">ហៅសួរព័ត៌មាន</a>
           <a class="cta" href="https://wa.me/85512345678" target="_blank" rel="noreferrer">RSVP WhatsApp</a>
         </div>
       </div>
@@ -274,6 +322,32 @@
     function next(){go(idx+1);}
     function restart(){clearInterval(timer);timer=setInterval(next,3500);}
     restart();
+
+    // Countdown
+    const targetDate = new Date("June 23, 2026 08:00:00").getTime();
+    const dEl=document.getElementById("days"),
+          hEl=document.getElementById("hours"),
+          mEl=document.getElementById("minutes"),
+          sEl=document.getElementById("seconds");
+
+    setInterval(()=>{
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if(diff>0){
+        const d=Math.floor(diff/(1000*60*60*24));
+        const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+        const m=Math.floor((diff%(1000*60*60))/(1000*60));
+        const s=Math.floor((diff%(1000*60))/1000);
+        dEl.textContent=d<10?"0"+d:d;
+        hEl.textContent=h<10?"0"+h:h;
+        mEl.textContent=m<10?"0"+m:m;
+        sEl.textContent=s<10?"0"+s:s;
+      } else {
+        dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent="00";
+      }
+    },1000);
   </script>
+
+
 </body>
 </html>
