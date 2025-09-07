@@ -5,25 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>សីរីសួស្ដី អាពារហ៍ពីពារហ៍</title>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&family=Noto+Serif+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    :root{
-      --gold:#d4af37;   
-      --dark:#0f1115;   
-      --light:#fffaf0;  
-      --muted:#e6dcc6;  
-      --card:#1a1f29aa; 
+    @font-face {
+      font-family: 'Khmer Moul';
+      src: url('Khmer_Moul.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family:"Kantumruy Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--light);
-      background:#0d0f14;
-      line-height:1.6;
-      overflow-x:hidden;
+    :root {
+      --gold: #d4af37;
+      --dark: #0f1115;
+      --light: #fffaf0;
+      --muted: #e6dcc6;
+      --card: #1a1f29aa;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Kantumruy Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--light);
+      background: #0d0f14;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* scroll image animation */
+    /* Scroll image animation */
     .scroll-animate {
       opacity: 0;
       transform: scale(1.1) translateY(30px);
@@ -33,76 +40,275 @@
       opacity: 1;
       transform: scale(1) translateY(0);
     }
-    a{color:inherit;text-decoration:none}
-    .bg{position:fixed;inset:0;z-index:-2;
-      background:url('top01.JPG') center/cover no-repeat;
-      filter:grayscale(10%);
+    a { color: inherit; text-decoration: none; }
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: url('top01.JPG') center/cover no-repeat;
+      filter: grayscale(10%);
     }
-    .overlay{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg, rgba(5,7,10,.75), rgba(10,12,16,.85));}
-    .container{width:min(1100px, 92vw);margin-inline:auto;padding:20px}
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(5,7,10,.75), rgba(10,12,16,.85));
+    }
+    .container { width: min(1100px, 92vw); margin-inline: auto; padding: 20px; }
 
-    header{padding:80px 0 40px;text-align:center;}
-    .badge{display:inline-block;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.35);color:var(--gold);padding:6px 12px;border-radius:999px;font-size:.9rem;backdrop-filter:blur(6px)}
-    .title{font-family:"Noto Serif Khmer", serif;font-weight:700;font-size: clamp(28px, 6vw, 56px);letter-spacing:.5px;margin:14px 0;color:#f7f3e8}
-    .subtitle{color:var(--muted);font-size:clamp(14px,2.6vw,18px)}
+    header { padding: 80px 0 40px; text-align: center; }
+    .badge {
+      display: inline-block;
+      background: rgba(212,175,55,.12);
+      border: 1px solid rgba(212,175,55,.35);
+      color: var(--gold);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: .9rem;
+      backdrop-filter: blur(6px);
+    }
+    .title {
+      font-family: "Khmer Moul", "Noto Serif Khmer", serif;
+      font-weight: normal;
+      font-size: clamp(28px, 6vw, 56px);
+      letter-spacing: .5px;
+      margin: 14px 0;
+      color: #f7f3e8;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: clamp(14px, 2.6vw, 18px);
+    }
 
-    .cta{margin-top:24px;display:inline-flex;gap:10px;align-items:center;padding:12px 20px;border-radius:999px;border:1px solid rgba(212,175,55,.5);
-      background:linear-gradient(180deg, rgba(212,175,55,.25), rgba(212,175,55,.15));
-      font-weight:700;letter-spacing:.2px;box-shadow:0 6px 20px rgba(212,175,55,.15);color:#fff;transition:all .3s ease}
-    .cta:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 10px 30px rgba(212,175,55,.25)}
+    .cta {
+      margin-top: 24px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,.5);
+      background: linear-gradient(180deg, rgba(212,175,55,.25), rgba(212,175,55,.15));
+      font-weight: 700;
+      letter-spacing: .2px;
+      box-shadow: 0 6px 20px rgba(212,175,55,.15);
+      color: #fff;
+      transition: all .3s ease;
+    }
+    .cta:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(212,175,55,.25);
+    }
 
-    /* nav with arrows */
-    nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;background:rgba(15,17,21,.55);backdrop-filter:blur(8px);}
-    nav .navwrap{flex:1;display:flex;gap:12px;overflow-x:auto;scroll-behavior:smooth;}
-    nav a{padding:10px 14px;border-radius:999px;opacity:.9;white-space:nowrap}
-    nav a.active, nav a:hover{background:rgba(255,255,255,.08)}
-    .nav-arrow{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:8px;flex-shrink:0;}
-    .nav-arrow:hover{color:var(--gold)}
+    /* Nav with arrows */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      background: rgba(15,17,21,.55);
+      backdrop-filter: blur(8px);
+    }
+    nav .navwrap {
+      flex: 1;
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+    nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      opacity: .9;
+      white-space: nowrap;
+    }
+    nav a.active, nav a:hover {
+      background: rgba(255,255,255,.08);
+    }
+    .nav-arrow {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+    .nav-arrow:hover { color: var(--gold); }
 
-    section{margin:32px auto;width:min(1100px,95%);opacity:0;transform:translateY(40px);transition:all .8s ease}
-    section.show{opacity:1;transform:translateY(0)}
+    section {
+      margin: 32px auto;
+      width: min(1100px, 95%);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all .8s ease;
+    }
+    section.show { opacity: 1; transform: translateY(0); }
 
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;backdrop-filter:blur(6px)}
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(6px);
+    }
 
-    .title-section{font-family:"Noto Serif Khmer", serif;font-size:clamp(22px,4.5vw,34px);text-align:center;margin-bottom:12px}
+    .title-section {
+      font-family: "Noto Serif Khmer", serif;
+      font-size: clamp(22px, 4.5vw, 34px);
+      text-align: center;
+      margin-bottom: 12px;
+    }
 
-    .invite-image{margin-top:20px;border-radius:12px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.3);}
-    .invite-image img{width:100%;height:auto;display:block;object-fit:cover;transition:transform .6s ease;}
-    .invite-image img:hover{transform:scale(1.03);}
+    .invite-image {
+      margin-top: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    .invite-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .invite-image img:hover { transform: scale(1.03); }
 
-    .timeline{display:grid;gap:14px;margin-top:8px}
-    .event{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start;background:rgba(255,255,255,.04);padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.06);transition:all .3s ease;cursor:pointer;}
-    .dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px dashed rgba(212,175,55,.6);color:var(--gold);font-weight:700;transition:all .3s ease}
-    .event h4{margin:0 0 4px;font-size:18px;color:#fff}
-    .event p{margin:0;color:var(--muted)}
-    .event:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 6px 20px rgba(212,175,55,.2);background:rgba(255,255,255,.08);}
-    .event:active{transform:scale(0.98);}
+    .timeline { display: grid; gap: 16px; margin-top: 12px; }
+    .event {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 16px;
+      align-items: center;
+      background: rgba(255,255,255,.04);
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.06);
+      transition: all .3s ease;
+      cursor: pointer;
+    }
+    .dot {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 16px;
+      width: 100px;
+    }
+    .dot i {
+      font-size: 24px;
+    }
+    .event h4 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      color: #fff;
+    }
+    .event p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .event:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 6px 20px rgba(212,175,55,.2);
+      background: rgba(255,255,255,.08);
+    }
+    .event:active { transform: scale(0.98); }
 
-    .mapwrap{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
-    .gallery{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
-    .slides{display:flex;transition:transform .6s ease}
-    .slides img{width:100%;height:360px;object-fit:cover;flex:0 0 100%}
-    .gctrl{position:absolute;inset:auto 0 12px;display:flex;gap:8px;justify-content:center}
-    .dotbtn{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.8);background:rgba(255,255,255,.2)}
-    .dotbtn.active{background:var(--gold);border-color:var(--gold)}
+    .mapwrap {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .gallery {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .slides {
+      display: flex;
+      transition: transform .6s ease;
+    }
+    .slides img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      flex: 0 0 100%;
+    }
+    .gctrl {
+      position: absolute;
+      inset: auto 0 12px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+    .dotbtn {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.8);
+      background: rgba(255,255,255,.2);
+    }
+    .dotbtn.active { background: var(--gold); border-color: var(--gold); }
 
-    footer{padding:48px 0 64px;text-align:center;color:var(--muted);opacity:0;transform:translateY(40px);transition:all .8s ease}
-    footer.show{opacity:1;transform:translateY(0)}
-    .thanks{font-family:"Noto Serif Khmer", serif;font-size:clamp(20px,4vw,28px);color:#f0e9d6}
+    footer {
+      padding: 48px 0 64px;
+      text-align: center;
+      color: var(--muted);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all .8s ease;
+    }
+    footer.show { opacity: 1; transform: translateY(0); }
+    .thanks {
+      font-family: "Noto Serif Khmer", serif;
+      font-size: clamp(20px, 4vw, 28px);
+      color: #f0e9d6;
+    }
 
-    .grid{display:grid;gap:24px}
-    .grid.two{grid-template-columns:1fr;}
-    @media (min-width: 860px){
-      .grid.two{grid-template-columns:1.1fr .9fr}
+    .grid { display: grid; gap: 24px; }
+    .grid.two { grid-template-columns: 1fr; }
+    @media (min-width: 860px) {
+      .grid.two { grid-template-columns: 1.1fr .9fr; }
     }
 
     /* Countdown */
-    .countdown{text-align:center;margin:0 0 20px;font-family:"Noto Serif Khmer", serif;}
-    .countdown h3{font-size:clamp(18px,4vw,26px);margin-bottom:10px;color:var(--gold);}
-    .countdown .time{display:flex;justify-content:center;gap:8px;flex-wrap:nowrap;}
-    .countdown .box{background:rgba(255,255,255,.08);padding:10px;border-radius:10px;flex:1;min-width:0;}
-    .countdown .num{font-size:20px;font-weight:700;color:#fff}
-    .countdown .label{font-size:12px;color:var(--muted)}
+    .countdown {
+      text-align: center;
+      margin: 0 0 20px;
+      font-family: "Noto Serif Khmer", serif;
+    }
+    .countdown h3 {
+      font-size: clamp(18px, 4vw, 26px);
+      margin-bottom: 10px;
+      color: var(--gold);
+    }
+    .countdown .time {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+    .countdown .box {
+      background: rgba(255,255,255,.08);
+      padding: 10px;
+      border-radius: 10px;
+      flex: 1;
+      min-width: 0;
+    }
+    .countdown .num {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .countdown .label {
+      font-size: 12px;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -126,7 +332,7 @@
   <header id="home" class="container">
     <span class="badge">សូមអញ្ជើញភ្ញៀវកិត្តយសទាំងអស់មេត្តាអញ្ជើញចូលរួមកម្មវិធី</span>
     <h1 class="title">សីរីសួស្ដី អាពារហ៍ពីពារហ៍</h1>
-    <p class="subtitle">ដែលនឹងប្រារព្ធនៅថ្ងៃសៅរ៍ ទី១៧ ខែមករា ឆ្នាំ២៦២៦ · ចាប់ផ្តើមម៉ោង ៦៥:៦៦ ល្ងាច</p>
+    <p class="subtitle">ដែលនឹងប្រារព្ធនៅថ្ងៃសៅរ៍ ទី១៧ ខែមករា ឆ្នាំ៨៶៸៶ · ចាប់ផ្តើមម៉ោង ០៥ : ៦៦ ល្ងាច</p>
     <p class="subtitle">ទីតាំងៈ ស្ថិតនៅភូមិ កំពង់ស្វាយ ឃុំកំពង់ស្វាយ ស្រុកកៀនស្វាយ ខេត្តកណ្ដាល</p>
     <a class="cta" href="#invite">មើលលិខិត្តអញ្ជើញ</a>
   </header>
@@ -146,7 +352,7 @@
       </div>
 
       <h2 class="title-section">សូមគោរពអញ្ជើញ</h2>
-      <p class="center muted">ឯកឧត្តម លោកឧកញ្ញា លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួម ជាអធិបតី និង ជាភ្ញៀវកិត្តយស ចម្រើនជោគជ័យ សីរីសួស្ដី ក្នុងពីធីអាពារហ៍ពីពារហ៍ កូនប្រុស ស្រី របស់យើងខ្ញ ។</p>
+      <p class="center muted">ឯកឧត្តម លោកឧកញ្ញា លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួម ជាអធិបតី និង ជាភ្ញៀវកិត្តយស ចម្រើនជោគជ័យ សីរីសួស្ដី ក្នុងពីធីអាពារហ៍ពីពារហ៍ កូនប្រុស ស្រី លនស់យើងខ្ញ ។</p>
       <div class="invite-image">
         <img class="scroll-animate" src="gb.png" alt="Groom and Bride">
       </div>
@@ -156,21 +362,48 @@
   <!-- AGENDA -->
   <section id="agenda">
     <div class="container">
-      <h2 class="title-section">ថ្ងៃសុក្រ ទី ១៦ ខែ មករា ឆ្នាំ ២៦៨៦</h2>
+      <h2 class="title-section">ថ្ងៃសុក្រ ទី ១៦ ខែ មករា ឆ្នាំ ៨៶៸៶</h2>
       <div class="timeline">
-        <div class="event"><div class="dot">៦៨:៦៦ រសៀល</div><div><h4>ពិធីសែនក្រុមងពាលី</h4><p>កម្មវិធីសែនព្រេន សុំម្ចាស់ទឹក ម្ចាស់ដី ។</p></div></div>
-        <div class="event"><div class="dot">៦៩:៦៦ រសៀល</div><div><h4>ពិធីសូត្រមន្ដចំរើនព្រះបរិត្ត</h4><p>និមន្តព្រះសង្សសូត្រមន្ដ។</p></div></div>
-        <div class="event"><div class="dot">៦៥:៦៦ ល្ងាច</div><div><h4>ពិធីជាវខាន់ស្លា</h4><p>ពិធីជាវខាន់ស្លា តាមប្រពៃណី។</p></div></div>
-        <div class="event"><div class="dot">៦៦:៦៦ ល្ងាច</div><div><h4>នាំភ្ញៀវកិត្តយស ពិសារភោជនីយ៍អាហារ</h4><p>កម្មវិធីការសម្តែង និងរាំវង់។</p></div></div>
+        <div class="event">
+          <div class="dot"><i class="fas fa-clock"></i> <span>៦៨ : ៦៦ រសៀល</span></div>
+          <div><h4>ពិធីសែនក្រុមងពាលី</h4><p>កម្មវិធីសែនព្រេន សុំម្ចាស់ទឹក ម្ចាស់ដី ។</p></div>
+        </div>
+        <div class="event">
+          <div class="dot"><i class="fas fa-clock"></i> <span>៶៹ : ៶៶ រសៀល</span></div>
+          <div><h4>ពិធីសូត្រមន្ដចំរើនព្រះបរិត្ត</h4><p>និមន្តព្រះសង្សសូត្រមន្ដ។</p></div>
+        </div>
+        <div class="event">
+          <div class="dot"><i class="fas fa-clock"></i> <span>៶៵ : ៶៶ ល្ងាច</span></div>
+          <div><h4>ពិធីជាវខាន់ស្លា</h4><p>ពិធីជាវខាន់ស្លា តាមប្រពៃណី។</p></div>
+        </div>
+        <div class="event">
+          <div class="dot"><i class="fas fa-clock"></i> <span>៶៶ : ៶៶ ល្ងាច</span></div>
+          <div><h4>នាំភ្ញៀវកិត្តយស ពិសារភោជនីយ៹អាហារ</h4><p>កម្មវិធីការសម្តែង និងរាំវង់។</p></div>
+        </div>
       </div>
 
-      <h2 class="title-section">ថ្ងៃសៅរ៍ ទី ១៧ ខែ មករា ឆ្នាំ ៨៦៨៦</h2>
+      <h2 class="title-section">ថ្ងៃសៅរ៍ ទី ១៧ ខែ មករា ឆ្នាំ ៨៶៸៶</h2>
       <div class="timeline">
-        <div class="event"><div class="dot">៦៧:៦៦ ព្រឹក</div><div><h4>ពិធីហែកំណត់</h4><p>កម្មវិធីហែរជំនួន។</p></div></div>
-        <div class="event"><div class="dot">៦៩:៦៦ ព្រឹក</div><div><h4>ពិធីកាត់សក់បង្កក់សិរី</h4><p>ដោយមេបាទាំងសងខាង។</p></div></div>
-        <div class="event"><div class="dot">៧៦:៶៶ ព្រឹក</div><div><h4>ពិធីសំពះផ្ទឹម សែនចងដៃរ</h4><p>សែនព្រេនដូនតា នឹង បាចផ្កាស្លា</p></div></div>
-        <div class="event"><div class="dot">៷៶:៹៶ ព្រឹក</div><div><h4>នាំភ្ញៀវកិត្តយស ពិសារភោជនីយ៹អាហារថ្ងៃត្រង់</h4><p>ជួបជុំភ្ញៀវកិត្តយសទាំងអស់ដែលបានចូលរួម។</p></div></div>
-        <div class="event"><div class="dot">៶៵:៶៶ ល្ងាច</div><div><h4>នាំភ្ញៀវកិត្តយស ពិសារភោជនីយ៍អាហារ</h4><p>កម្មវិធីការសម្តែង និងរាំកម្សានដល់ ម៉ោង ៷៶:៶៶ នាទីយប់។</p></div></div>
+        <div class="event">
+          <div class="dot"><i class="fas fa-clock"></i> <span>៶៷ : ៶៶ ព្រឹក</span></div>
+          <div><h4>ពិធីហែកំណត់</h4><p>កម្មវិធីហែរជំនួន។</p></div>
+        </div>
+        <div class="event">
+          <div class="dot"><i class="fas fa-clock"></i> <span>៶៹ : ៶៶ ព្រឹក</span></div>
+          <div><h4>ពិធីកាត់សក់បង្កក់សិរី</h4><p>ដោយមេបាទាំងសងខាង។</p></div>
+        </div>
+        <div class="event">
+          <div class="dot"><i class="fas fa-clock"></i> <span>៷៶ : ៶៶ ព្រឹក</span></div>
+          <div><h4>ពិធីសំពះផ្ទឹម សែនចងដៃរ</h4><p>សែនព្រេនដូនតា នឹង បាចផ្កាស្លា</p></div>
+        </div>
+        <div class="event">
+          <div class="dot"><i class="fas fa-clock"></i> <span>៷៶ : ៹៶ ព្រឹក</span></div>
+          <div><h4>នាំភ្ញៀវកិត្តយស ពិសារភោជនីយ៹អាហារថ្ងៃត្រង់</h4><p>ជួបជុំភ្ញៀវកិត្តយសទាំងអស់ដែលបានចូលរួម។</p></div>
+        </div>
+        <div class="event">
+          <div class="dot"><i class="fas fa-clock"></i> <span>៶៵ : ៶៶ ល្ងាច</span></div>
+          <div><h4>នាំភ្ញៀវកិត្តយស ពិសារភោជនីយ៹អាហារ</h4><p>កម្មវិធីការសម្តែង និងរាំកម្សានដល់ ម៉ោង ៷៶ : ៶៶ នាទីយប់�।</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -203,97 +436,107 @@
   <footer>
     <div class="container">
       <div class="thanks">អរគុណសម្រាប់ការអញ្ជើញមកទស្សនា!</div>
-      <div class="muted">© ៨៶៸៶ · វិន មុន្នី</div>
+      <div class="muted">© ៸៶៸៶ · វិន មុន្នី</div>
     </div>
   </footer>
 
   <script>
     // nav scroll arrows
-    function scrollNav(offset){
-      document.getElementById('navwrap').scrollBy({left:offset,behavior:'smooth'});
+    function scrollNav(offset) {
+      document.getElementById('navwrap').scrollBy({ left: offset, behavior: 'smooth' });
     }
 
     // active link highlight
     const links = document.querySelectorAll('nav a');
-    const obsMenu = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        const id='#'+e.target.id;
-        const link=[...links].find(l=>l.getAttribute('href')===id);
-        if(link){
-          if(e.isIntersecting){
-            links.forEach(l=>l.classList.remove('active'));
+    const obsMenu = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const id = '#' + e.target.id;
+        const link = [...links].find(l => l.getAttribute('href') === id);
+        if (link) {
+          if (e.isIntersecting) {
+            links.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
           }
         }
       });
-    },{threshold:.35});
-    ['home','invite','agenda','map','gallery'].forEach(id=>{
-      const el=document.getElementById(id);
-      if(el) obsMenu.observe(el);
+    }, { threshold: .35 });
+    ['home', 'invite', 'agenda', 'map', 'gallery'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) obsMenu.observe(el);
     });
 
     // Gallery slider
-    const slides=document.getElementById('slides');
-    const imgs=slides.querySelectorAll('img');
-    const ctrl=document.getElementById('gctrl');
-    let idx=0,n=imgs.length,timer;
-    function go(i){idx=(i+n)%n;slides.style.transform=`translateX(-${idx*100}%)`;updateDots();}
-    function updateDots(){ctrl.querySelectorAll('.dotbtn').forEach((b,j)=>b.classList.toggle('active',j===idx));}
-    for(let i=0;i<n;i++){const b=document.createElement('button');b.className='dotbtn';b.addEventListener('click',()=>{go(i);restart();});ctrl.appendChild(b);}
+    const slides = document.getElementById('slides');
+    const imgs = slides.querySelectorAll('img');
+    const ctrl = document.getElementById('gctrl');
+    let idx = 0, n = imgs.length, timer;
+    function go(i) {
+      idx = (i + n) % n;
+      slides.style.transform = `translateX(-${idx * 100}%)`;
+      updateDots();
+    }
+    function updateDots() {
+      ctrl.querySelectorAll('.dotbtn').forEach((b, j) => b.classList.toggle('active', j === idx));
+    }
+    for (let i = 0; i < n; i++) {
+      const b = document.createElement('button');
+      b.className = 'dotbtn';
+      b.addEventListener('click', () => { go(i); restart(); });
+      ctrl.appendChild(b);
+    }
     updateDots();
-    function next(){go(idx+1);}
-    function restart(){clearInterval(timer);timer=setInterval(next,3500);}
+    function next() { go(idx + 1); }
+    function restart() { clearInterval(timer); timer = setInterval(next, 3500); }
     restart();
 
     // Countdown
     const targetDate = new Date("January 17, 2026 08:00:00").getTime();
-    const daysEl=document.getElementById("days");
-    const hoursEl=document.getElementById("hours");
-    const minutesEl=document.getElementById("minutes");
-    const secondsEl=document.getElementById("seconds");
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
 
-    function updateCountdown(){
-      const now=new Date().getTime();
-      const distance=targetDate-now;
-      if(distance<0){
-        document.getElementById("countdown").innerHTML="<h3>ពិធីបានចាប់ផ្តើមរួចហើយ!</h3>";
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "<h3>ពិធីបានចាប់ផ្តើមរួចហើយ!</h3>";
         clearInterval(timerCD);
         return;
       }
-      const d=Math.floor(distance/(1000*60*60*24));
-      const h=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-      const m=Math.floor((distance%(1000*60*60))/(1000*60));
-      const s=Math.floor((distance%(1000*60))/1000);
-      daysEl.textContent=d;
-      hoursEl.textContent=h;
-      minutesEl.textContent=m;
-      secondsEl.textContent=s;
+      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((distance % (1000 * 60)) / 1000);
+      daysEl.textContent = d;
+      hoursEl.textContent = h;
+      minutesEl.textContent = m;
+      secondsEl.textContent = s;
     }
-    const timerCD=setInterval(updateCountdown,1000);
+    const timerCD = setInterval(updateCountdown, 1000);
     updateCountdown();
 
     // Scroll animations
-    const sections=document.querySelectorAll("section, footer");
-    const observer=new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
+    const sections = document.querySelectorAll("section, footer");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
           entry.target.classList.add("show");
         }
       });
-    },{threshold:0.2});
-    sections.forEach(sec=>observer.observe(sec));
+    }, { threshold: 0.2 });
+    sections.forEach(sec => observer.observe(sec));
 
     // Scroll animation for invite image
     const imgAnimate = document.querySelectorAll(".scroll-animate");
-    const imgObs = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
+    const imgObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
           entry.target.classList.add("show");
         }
       });
-    },{threshold:0.3});
-    imgAnimate.forEach(img=>imgObs.observe(img));
+    }, { threshold: 0.3 });
+    imgAnimate.forEach(img => imgObs.observe(img));
   </script>
-
 </body>
 </html>
