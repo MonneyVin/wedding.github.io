@@ -4,15 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>សីរីសួស្ដី អាពារហ៍ពីពារហ៍</title>
-  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&family=Noto+Serif+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    @font-face {
-      font-family: 'Khmer Moul';
-      src: url('Kh Ang Rooster.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-    }
     :root {
       --gold: #d4af37;
       --dark: #0f1115;
@@ -23,7 +17,7 @@
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-      font-family: "Kantumruy Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: "Noto Sans Khmer", sans-serif;
       color: var(--light);
       background: #0d0f14;
       line-height: 1.6;
@@ -68,8 +62,8 @@
       backdrop-filter: blur(6px);
     }
     .title {
-      font-family: "Khmer Moul", "Noto Serif Khmer", serif;
-      font-weight: normal;
+      font-family: "Noto Sans Khmer", sans-serif;
+      font-weight: 700;
       font-size: clamp(28px, 6vw, 56px);
       letter-spacing: .5px;
       margin: 14px 0;
@@ -155,7 +149,7 @@
     }
 
     .title-section {
-      font-family: "Noto Serif Khmer", serif;
+      font-family: "Noto Sans Khmer", sans-serif;
       font-size: clamp(22px, 4.5vw, 34px);
       text-align: center;
       margin-bottom: 12px;
@@ -265,7 +259,7 @@
     }
     footer.show { opacity: 1; transform: translateY(0); }
     .thanks {
-      font-family: "Noto Serif Khmer", serif;
+      font-family: "Noto Sans Khmer", sans-serif;
       font-size: clamp(20px, 4vw, 28px);
       color: #f0e9d6;
     }
@@ -280,7 +274,7 @@
     .countdown {
       text-align: center;
       margin: 0 0 20px;
-      font-family: "Noto Serif Khmer", serif;
+      font-family: "Noto Sans Khmer", sans-serif;
     }
     .countdown h3 {
       font-size: clamp(18px, 4vw, 26px);
@@ -295,18 +289,26 @@
     }
     .countdown .box {
       background: rgba(255,255,255,.08);
-      padding: 10px;
+      padding: 12px;
       border-radius: 10px;
       flex: 1;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .countdown .icon {
+      font-size: 24px;
+      color: var(--gold);
+      margin-bottom: 8px;
     }
     .countdown .num {
-      font-size: 20px;
+      font-size: 28px;
       font-weight: 700;
       color: #fff;
     }
     .countdown .label {
-      font-size: 12px;
+      font-size: 16px;
       color: var(--muted);
     }
   </style>
@@ -322,7 +324,7 @@
       <a href="#home">គេហទំព័រ</a>
       <a href="#invite">សូមគោរពអញ្ជើញ</a>
       <a href="#agenda">កាលវិភាគ</a>
-      <a href="#map">ទីតាំង</a>
+      <a href="#map">ទីតাំង</a>
       <a href="#gallery">រូបភាព</a>
     </div>
     <button class="nav-arrow right" onclick="scrollNav(150)">›</button>
@@ -331,7 +333,7 @@
   <!-- HERO -->
   <header id="home" class="container">
     <span class="badge">សូមអញ្ជើញភ្ញៀវកិត្តយសទាំងអស់មេត្តាអញ្ជើញចូលរួមកម្មវិធី</span>
-    <h1 class="title">សិរីសួស្ដី អាពារហ៍ ពិពារហ៍</h1>
+    <h1 class="title">សីរីសួស្ដី អាពារហ៍ពីពារហ៍</h1>
     <p class="subtitle">ដែលនឹងប្រារព្ធនៅថ្ងៃសៅរ៍ ទី១៧ ខែមករា ឆ្នាំ៨៶៸៶ · ចាប់ផ្តើមម៉ោង ០៥ : ៦៦ ល្ងាច</p>
     <p class="subtitle">ទីតាំងៈ ស្ថិតនៅភូមិ កំពង់ស្វាយ ឃុំកំពង់ស្វាយ ស្រុកកៀនស្វាយ ខេត្តកណ្ដាល</p>
     <a class="cta" href="#invite">មើលលិខិត្តអញ្ជើញ</a>
@@ -344,10 +346,26 @@
       <div class="countdown" id="countdown">
         <h3>ការរាប់ថយក្រោយដល់ថ្ងៃពិធី</h3>
         <div class="time">
-          <div class="box"><div class="num" id="days">00</div><div class="label">ថ្ងៃ</div></div>
-          <div class="box"><div class="num" id="hours">00</div><div class="label">ម៉ោង</div></div>
-          <div class="box"><div class="num" id="minutes">00</div><div class="label">នាទី</div></div>
-          <div class="box"><div class="num" id="seconds">00</div><div class="label">វិនាទី</div></div>
+          <div class="box">
+            <i class="fas fa-calendar icon"></i>
+            <div class="num" id="days">00</div>
+            <div class="label">ថ្ងៃ</div>
+          </div>
+          <div class="box">
+            <i class="fas fa-clock icon"></i>
+            <div class="num" id="hours">00</div>
+            <div class="label">ម៉ោង</div>
+          </div>
+          <div class="box">
+            <i class="fas fa-stopwatch icon"></i>
+            <div class="num" id="minutes">00</div>
+            <div class="label">នាទី</div>
+          </div>
+          <div class="box">
+            <i class="fas fa-hourglass icon"></i>
+            <div class="num" id="seconds">00</div>
+            <div class="label">វិនាទី</div>
+          </div>
         </div>
       </div>
 
@@ -365,7 +383,7 @@
       <h2 class="title-section">ថ្ងៃសុក្រ ទី ១៦ ខែ មករា ឆ្នាំ ៨៶៸៶</h2>
       <div class="timeline">
         <div class="event">
-          <div class="dot"><i class="fas fa-clock"></i> <span>៦៨ : ៦៦ រសៀល</span></div>
+          <div class="dot"><i class="fas fa-clock"></i> <span>៦៸ : ៶៶ រសៀល</span></div>
           <div><h4>ពិធីសែនក្រុមងពាលី</h4><p>កម្មវិធីសែនព្រេន សុំម្ចាស់ទឹក ម្ចាស់ដី ។</p></div>
         </div>
         <div class="event">
@@ -398,7 +416,7 @@
         </div>
         <div class="event">
           <div class="dot"><i class="fas fa-clock"></i> <span>៷៶ : ៹៶ ព្រឹក</span></div>
-          <div><h4>នាំភ្ញៀវកិត្តយស ពិសារភោជនីយ៹អាហារថ្ងៃត្រង់</h4><p>ជួបជុំភ្ញៀវកិត្តយសទាំងអស់ដែលបានចូលរួម។</p></div>
+          <div><h4>នាំភ្ញៀវកិត្តយស ពិសារភោជនីយ៹អាហារថ្ងៃត្រង់</h4><p>ជួបជុំភ្ញៀវកិត្តយសទាំងអស់ដែលបានចូលរួម�।</p></div>
         </div>
         <div class="event">
           <div class="dot"><i class="fas fa-clock"></i> <span>៶៵ : ៶៶ ល្ងាច</span></div>
@@ -540,5 +558,3 @@
   </script>
 </body>
 </html>
-
-
